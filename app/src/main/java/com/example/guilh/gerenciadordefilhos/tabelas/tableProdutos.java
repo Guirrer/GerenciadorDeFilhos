@@ -6,7 +6,7 @@ public class tableProdutos {
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
                     "id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "nome VARCHAR(255) NULL DEFAULT NULL, " +
+                    "nome VARCHAR(255) NOT NULL, " +
                     "PRIMARY KEY (id), " +
                     ")";
 

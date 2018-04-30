@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TelaPrincipal" />
+        <activity android:name=".CadastroFilho" />
+        <activity android:name=".CadastroUsuario"></activity>
     </application>
 
 </manifest>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Gerenciador de Filhos</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="login">Login</string>
+    <string name="cadastrar">Cadastrar</string>
 </resources>

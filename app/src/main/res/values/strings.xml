@@ -4,4 +4,9 @@
     <string name="senha">Senha</string>
     <string name="login">Login</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="semfilho">VOCÊ NÃO POSSUI NENHUM FILHO CADASTRADO!</string>
+    <string name="nomefilho">*NOME*</string>
+    <string name="vacinas">VACINAS</string>
+
+
 </resources>

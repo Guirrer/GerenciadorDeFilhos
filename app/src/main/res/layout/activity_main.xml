@@ -7,48 +7,54 @@
     tools:context="com.example.guilh.gerenciadordefilhos.MainActivity">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="372dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/usuario" />
+            android:text="@string/usuario"
+            android:layout_gravity="center"/>
 
         <EditText
-            android:id="@+id/tLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:id="@+id/tvLogin"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"/>
 
         <TextView
+
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/senha" />
+            android:text="@string/senha"
+            android:layout_gravity="center"/>
 
         <EditText
-            android:id="@+id/tSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/tvSenha"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:layout_gravity="center"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/login" />
+            android:text="@string/login"
+            />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnCadastrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

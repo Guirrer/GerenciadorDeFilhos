@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".TelaPrincipal" />
         <activity android:name=".CadastroFilho" />
-        <activity android:name=".CadastroUsuario"></activity>
+        <activity android:name=".CadastroUsuario" />
+        <activity android:name=".CadastroVacinas"></activity>
     </application>
 
 </manifest>

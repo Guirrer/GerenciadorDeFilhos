@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaPrincipal">
+    tools:context=".CadastroVacinas">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,20 +13,22 @@
 
         <TextView
             android:layout_marginTop="50px"
-            android:id="@+id/textView2"
+            android:id="@+id/tvNomeFilho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/semfilho"
+            android:text="@string/nomefilho"
             android:layout_gravity="center"/>
 
-        <Button
-            android:id="@+id/cadatrarFilho"
+        <TextView
+            android:layout_marginTop="50px"
+            android:id="@+id/tvVacinas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="100dp"
-            android:layout_marginBottom="200dp"
-            android:text="Cadastrar Filho"
-            android:visibility="visible" />
+            android:text="@string/vacinas"
+            android:layout_gravity="center"/>
+
+
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

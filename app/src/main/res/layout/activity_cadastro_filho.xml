@@ -5,99 +5,157 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CadastroFilho">
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="333dp"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Nome"/>
+            <TextView
+                android:layout_marginTop="15px"
+                android:textSize="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cadastrar Filho"
+                android:layout_gravity="center"/>
 
             <TextView
+                android:layout_marginTop="15px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/etNome"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:layout_gravity="center"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:layout_marginTop="15px"
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Data de Nascimento"/>
 
             <EditText
-                android:id="@+id/editText3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/etDtaNasc"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:ems="10"
                 android:inputType="date" />
 
             <TextView
+                android:layout_marginTop="15px"
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SEXO"/>
+                android:layout_gravity="center"
+                android:text="Sexo"/>
 
             <RadioGroup
                 android:layout_width="212dp"
                 android:layout_height="78dp"
                 tools:layout_editor_absoluteX="86dp"
-                tools:layout_editor_absoluteY="153dp">
+                tools:layout_editor_absoluteY="153dp"
+                android:layout_gravity="center">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/rbMasc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Masculino" />
+                    android:text="Masculino"
+                    android:textColor="@color/gray"
+                    />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rbFem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Feminino" />
+                    android:text="Feminino"
+                    android:textColor="@color/gray"/>
             </RadioGroup>
 
             <TextView
+                android:layout_marginTop="35px"
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MEDIDAS"
-                android:textSize="30dp"/>
+                android:text="Medidas"
+                android:textSize="25dp"
+                android:layout_gravity="center"
+                />
 
-            <EditText
-                android:id="@+id/editText4"
+            <TextView
+                android:layout_marginTop="15px"
+                android:id="@+id/tvAltura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
+                android:layout_gravity="center"
                 android:text="Altura"/>
 
+
             <EditText
-                android:id="@+id/editText5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/etAltura"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_marginTop="15px"
+                android:id="@+id/tvPeso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Peso"/>
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/etPeso"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_marginTop="15px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Tamanho do pé"/>
+
+            <EditText
+                android:id="@+id/edtTamPe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Tamanho do pé"/>
+                android:layout_gravity="center"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnCadastrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar Filho"/>
+                android:text="Cadastrar Filho"
+                android:layout_gravity="center"/>
+
         </LinearLayout>
-    </RelativeLayout>
+</ScrollView>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

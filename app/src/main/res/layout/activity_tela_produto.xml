@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroVacinas">
-
+    tools:context=".TelaProduto">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -13,26 +12,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:layout_marginTop="15px"
                 android:textSize="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar Vacina"
+                android:text="Cadastrar Produto"
                 android:layout_gravity="center"/>
 
             <TextView
-                android:layout_marginTop="35px"
+                android:layout_marginTop="150px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nome da vacina"
+                android:text="Detalhe do Produto"
                 android:layout_gravity="center"/>
 
             <EditText
-                android:id="@+id/etNomeVacina"
+                android:id="@+id/etDetalhe"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:ems="10"
                 android:inputType="text"
                 android:layout_gravity="center"/>
@@ -41,13 +39,13 @@
                 android:layout_marginTop="15px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dose"
+                android:text="Quantidade"
                 android:layout_gravity="center"/>
 
             <EditText
-                android:id="@+id/etDoseVacina"
+                android:id="@+id/etQuantidade"
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:ems="10"
                 android:inputType="text"
                 android:layout_gravity="center"/>

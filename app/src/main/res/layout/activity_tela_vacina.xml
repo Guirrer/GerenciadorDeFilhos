@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroVacinas">
+    tools:context=".TelaVacina">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
                 android:textSize="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar Vacina"
+                android:text="Vacina"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -68,10 +68,10 @@
                 android:layout_gravity="center"/>
 
             <Button
-                android:id="@+id/btnCadastrarVacina"
+                android:id="@+id/btnEditarVacina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar"
+                android:text="Editar"
                 android:layout_gravity="center"/>
         </LinearLayout>
     </RelativeLayout>

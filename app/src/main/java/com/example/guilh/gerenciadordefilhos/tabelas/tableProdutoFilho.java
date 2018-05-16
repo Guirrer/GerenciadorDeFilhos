@@ -12,7 +12,7 @@ public class tableProdutoFilho {
                     "qtd_pacote INT(11) NULL DEFAULT NULL, " +
                     "data_compra DATE NULL DEFAULT NULL, " +
                     "preco INT(10) UNSIGNED NULL DEFAULT NULL, " +
-                    "marca TEXT, " +
+                    "detalhe TEXT, " +
                     "qtd_compra INT(11) NULL DEFAULT NULL, " +
                     "PRIMARY KEY (id), " +
                     "INDEX produto_FKIndex1 (filho_id), " +

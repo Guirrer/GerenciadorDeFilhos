@@ -19,7 +19,9 @@
         <activity android:name=".TelaPrincipal" />
         <activity android:name=".CadastroFilho" />
         <activity android:name=".CadastroUsuario" />
-        <activity android:name=".CadastroVacinas"></activity>
+        <activity android:name=".CadastroVacinas" />
+        <activity android:name=".TelaVacina" />
+        <activity android:name=".TelaProduto"></activity>
     </application>
 
 </manifest>

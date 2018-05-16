@@ -1,10 +1,51 @@
 package com.example.guilh.gerenciadordefilhos.tabelas;
 
+import java.sql.Date;
+
 /**
  * Created by guilh on 08/04/2018.
  */
 
 public class tableFilho {
+
+    private Integer usuario_id;
+    private String nome;
+
+    public Integer getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(Integer usuario_id) {
+        this.usuario_id = usuario_id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getData_nasc() {
+        return data_nasc;
+    }
+
+    public void setData_nasc(String data_nasc) {
+        this.data_nasc = data_nasc;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    private String data_nasc;
+    private String sexo;
+
 
         private static  final String TABLE = "filho";
 

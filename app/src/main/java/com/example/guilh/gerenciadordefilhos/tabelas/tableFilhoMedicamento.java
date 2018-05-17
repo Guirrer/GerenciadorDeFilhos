@@ -8,11 +8,8 @@ public class tableFilhoMedicamento {
                     "idfilho_medicamento INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
                     "filho_id INT(10) UNSIGNED NOT NULL, " +
                     "medicamento_id INT(10) UNSIGNED NOT NULL, " +
-                    "qtd INT(10) UNSIGNED NOT NULL, " +
                     "dosagem FLOAT UNSIGNED NULL DEFAULT NULL, " +
                     "periodo FLOAT UNSIGNED NULL DEFAULT NULL, " +
-                    "valor FLOAT NULL DEFAULT NULL, " +
-                    "local_compra VARCHAR(255) NULL DEFAULT NULL, " +
                     "observacao VARCHAR(255) NULL DEFAULT NULL, " +
                     "PRIMARY KEY (idfilho_medicamento), " +
                     "INDEX filho_medicamento_FKIndex1 (filho_id), " +

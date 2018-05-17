@@ -8,70 +8,133 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_marginTop="15px"
-                android:textSize="25dp"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar Produto"
-                android:layout_gravity="center"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:textSize="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar Produto"
+                    android:layout_gravity="center"/>
+                <Spinner
+                    android:layout_marginTop="15px"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="100px"
+                    android:id="@+id/spNomeProduto">
+                </Spinner>
 
-            <TextView
-                android:layout_marginTop="150px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Detalhe do Produto"
-                android:layout_gravity="center"/>
+                <Spinner
+                    android:layout_marginTop="30px"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="100px"
+                    android:id="@+id/spNomeFilho">
+                </Spinner>
 
-            <EditText
-                android:id="@+id/etDetalhe"
-                android:layout_width="330dp"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:layout_gravity="center"/>
+                <TextView
+                    android:layout_marginTop="100px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Detalhe do Produto"
+                    android:layout_gravity="center"/>
 
-            <TextView
-                android:layout_marginTop="15px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Quantidade"
-                android:layout_gravity="center"/>
+                <EditText
+                    android:id="@+id/etDetalhe"
+                    android:layout_width="330dp"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:layout_gravity="center"/>
 
-            <EditText
-                android:id="@+id/etQuantidade"
-                android:layout_width="330dp"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:inputType="text"
-                android:layout_gravity="center"/>
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quantidade"
+                    android:layout_gravity="center"/>
 
-            <TextView
-                android:layout_marginTop="15px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Periodiciadade"
-                android:layout_gravity="center"/>
+                <EditText
+                    android:id="@+id/etQuantidade"
+                    android:layout_width="330dp"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:layout_gravity="center"/>
 
-            <EditText
-                android:id="@+id/etPeriodiciadade"
-                android:layout_width="330dp"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:inputType="text"
-                android:layout_gravity="center"/>
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quantidade de Pacotes"
+                    android:layout_gravity="center"/>
 
-            <Button
-                android:id="@+id/btnCadastrarVacina"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cadastrar"
-                android:layout_gravity="center"/>
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/etQuantidadePacotes"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preço"
+                    android:layout_gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etPreco"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:layout_gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etData"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Local da Compra"
+                    android:layout_gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etLocalCompra"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/btnCadastrarProduto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

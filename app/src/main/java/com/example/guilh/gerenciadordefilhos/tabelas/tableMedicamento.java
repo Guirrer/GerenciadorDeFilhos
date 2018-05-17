@@ -9,6 +9,9 @@ public class tableMedicamento {
                     "nome VARCHAR(255) NOT NULL, " +
                     "laboratorio VARCHAR(255) NOT NULL, " +
                     "finalidade VARCHAR(255) NOT NULL, " +
+                    "valor FLOAT NULL DEFAULT NULL, " +
+                    "local_compra VARCHAR(255) NULL DEFAULT NULL, " +
+                    "qtd INT(10) UNSIGNED NOT NULL, " +
                     "PRIMARY KEY (id), " +
                     ")";
 

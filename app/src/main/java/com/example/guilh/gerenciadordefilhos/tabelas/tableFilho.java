@@ -1,15 +1,12 @@
 package com.example.guilh.gerenciadordefilhos.tabelas;
 
-import java.sql.Date;
-
-/**
- * Created by guilh on 08/04/2018.
- */
-
 public class tableFilho {
+    private static  final String TABLE = "filho";
 
     private Integer usuario_id;
     private String nome;
+    private String data_nasc;
+    private String sexo;
 
     public Integer getUsuario_id() {
         return usuario_id;
@@ -42,12 +39,6 @@ public class tableFilho {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-
-    private String data_nasc;
-    private String sexo;
-
-
-        private static  final String TABLE = "filho";
 
         private static final String CREATE =
                 "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +

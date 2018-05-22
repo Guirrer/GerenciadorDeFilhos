@@ -3,6 +3,26 @@ package com.example.guilh.gerenciadordefilhos.tabelas;
 public class tableEventoDosFilhos {
     private static  final String TABLE = "eventos_dos_filhos";
 
+    private Integer filho_id;
+    private Integer eventos_id;
+
+    public Integer getFilho_id() {
+        return filho_id;
+    }
+
+    public void setFilho_id(Integer filho_id) {
+        this.filho_id = filho_id;
+    }
+
+    public Integer getEventos_id() {
+        return eventos_id;
+    }
+
+    public void setEventos_id(Integer eventos_id) {
+        this.eventos_id = eventos_id;
+    }
+
+
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
                     "filho_id int(10) unsigned NOT NULL," +

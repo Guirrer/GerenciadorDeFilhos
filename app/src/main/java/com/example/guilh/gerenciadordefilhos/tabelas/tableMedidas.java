@@ -1,6 +1,12 @@
 package com.example.guilh.gerenciadordefilhos.tabelas;
 
-public class tableMedidas {
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.guilh.gerenciadordefilhos.Util.Database;
+
+public class tableMedidas extends Database {
     private static  final String TABLE = "medidas";
 
     private Integer filho_id;
@@ -8,6 +14,12 @@ public class tableMedidas {
     private Float peso;
     private Integer tam_pe;
     private Float altura;
+    private SQLiteDatabase db;
+
+    public tableMedidas(Context context) {
+        super(context);
+        db = this.getWritableDatabase();
+    }
 
     public Integer getFilho_id() {
         return filho_id;
@@ -67,4 +79,22 @@ public class tableMedidas {
     public String create() { return CREATE; }
 
     public String upgrade() { return DROP; }
+
+    public long insert()
+    {
+        return db.insert(TABLE, null, retornaValues());
+    }
+
+    private ContentValues retornaValues()
+    {
+        ContentValues values = new ContentValues();
+
+        values.put("filho_id", filho_id);
+        values.put("data_dado", data_dado);
+        values.put("peso", peso);
+        values.put("tam_pe", tam_pe);
+        values.put("altura", altura);
+
+        return  values;
+    }
 }

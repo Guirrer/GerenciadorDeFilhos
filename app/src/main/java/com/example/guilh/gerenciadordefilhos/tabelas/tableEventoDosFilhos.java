@@ -30,8 +30,8 @@ public class tableEventoDosFilhos {
                     "PRIMARY KEY ( filho_id , eventos_id)," +
                     "KEY filho_has_eventos_FKIndex1 ( filho_id )," +
                     "KEY filho_has_eventos_FKIndex2 ( eventos_id )," +
-                    "CONSTRAINT eventos_dos_filhos_ibfk_1 FOREIGN KEY (filho_id) REFERENCES filho ( id) ON DELETE NO ACTION ON UPDATE NO ACTION, " +
-                    "CONSTRAINT eventos_dos_filhos_ibfk_2 FOREIGN KEY (eventos_id) REFERENCES eventos (id) ON DELETE NO ACTION ON UPDATE NO ACTION " +
+                    "CONSTRAINT eventos_dos_filhos_ibfk_1 FOREIGN KEY (filho_id) REFERENCES filho (filho_id) ON DELETE NO ACTION ON UPDATE NO ACTION, " +
+                    "CONSTRAINT eventos_dos_filhos_ibfk_2 FOREIGN KEY (eventos_id) REFERENCES eventos (eventos_id) ON DELETE NO ACTION ON UPDATE NO ACTION " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;

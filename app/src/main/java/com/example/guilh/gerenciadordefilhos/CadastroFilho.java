@@ -40,8 +40,8 @@ public class CadastroFilho extends AppCompatActivity {
 
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
 
-        tableFilho = new tableFilho();
-        tableMedidas = new tableMedidas();
+        tableFilho = new tableFilho(getApplicationContext());
+        tableMedidas = new tableMedidas(getApplicationContext());
 
         btnCadastrar.setOnClickListener(new View.OnClickListener()
         {
@@ -52,6 +52,11 @@ public class CadastroFilho extends AppCompatActivity {
                 tableMedidas.setAltura(Float.parseFloat(etAltura.getText().toString()));
                 tableMedidas.setPeso(Float.parseFloat(etPeso.getText().toString()));
                 tableMedidas.setTam_pe(Integer.parseInt(edtTamPe.getText().toString()));
+                tableFilho.insert();
+                tableFilho.selectMaxId();
+                tableMedidas.setFilho_id(tableFilho.getId());
+                tableMedidas.insert();
+
             }
         });
 

@@ -30,9 +30,9 @@ public class Database extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         eventosFilhos = new tableEventoDosFilhos();
         eventos = new tableEventos();
-        filho = new tableFilho();
+        filho = new tableFilho(context);
         filhoMedicamento = new tableFilhoMedicamento();
-        medidas = new tableMedidas();
+        medidas = new tableMedidas(context);
         produtoFilho = new tableProdutoFilho();
         produtos = new tableProdutos();
         usuario = new tableUsuario();
@@ -69,4 +69,7 @@ public class Database extends SQLiteOpenHelper {
 
         onCreate(db);
     }
+
+
+
 }

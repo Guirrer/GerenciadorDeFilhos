@@ -2,9 +2,16 @@ package com.example.guilh.gerenciadordefilhos.tabelas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class tableMedidas extends Database {
     private static  final String TABLE = "medidas";
@@ -15,9 +22,11 @@ public class tableMedidas extends Database {
     private Integer tam_pe;
     private Float altura;
     private SQLiteDatabase db;
+    private Context context;
 
     public tableMedidas(Context context) {
         super(context);
+        this.context = context;
         db = this.getWritableDatabase();
     }
 
@@ -83,6 +92,180 @@ public class tableMedidas extends Database {
     public long insert()
     {
         return db.insert(TABLE, null, retornaValues());
+    }
+
+    public int update()
+    {
+        return db.update(TABLE, retornaValues(), "filho_id = ?", new String[]{ this.filho_id.toString() });
+    }
+
+    public void selectMaxId()
+    {
+        String query = "SELECT MAX(ID) FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                this.filho_id = c.getColumnIndex("filho_id");
+            }
+        }
+    }
+
+    public List<tableMedidas> selectList()
+    {
+        String query = "SELECT * FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        List<tableMedidas> list = new List<tableMedidas>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<tableMedidas> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(@NonNull T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(tableMedidas tableMedidas) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(@NonNull Collection<? extends tableMedidas> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, @NonNull Collection<? extends tableMedidas> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public tableMedidas get(int index) {
+                return null;
+            }
+
+            @Override
+            public tableMedidas set(int index, tableMedidas element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, tableMedidas element) {
+
+            }
+
+            @Override
+            public tableMedidas remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableMedidas> listIterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableMedidas> listIterator(int index) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public List<tableMedidas> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                tableMedidas table = new tableMedidas(this.context);
+                table.filho_id = c.getInt(c.getColumnIndex("eventos_id"));
+                table.data_dado = c.getString(c.getColumnIndex("data_dado"));
+                table.peso = c.getFloat(c.getColumnIndex("peso"));
+                table.tam_pe = c.getInt(c.getColumnIndex("tam_pe"));
+                table.altura = c.getFloat(c.getColumnIndex("altura"));
+                list.add(table);
+            }
+        }
+        return list;
+    }
+
+    public void select(int id)
+    {
+        String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                this.filho_id = c.getInt(c.getColumnIndex("filho_id"));
+                this.data_dado = c.getString(c.getColumnIndex("data_dado"));
+                this.peso = c.getFloat(c.getColumnIndex("peso"));
+                this.tam_pe = c.getInt(c.getColumnIndex("tam_pe"));
+                this.altura = c.getFloat(c.getColumnIndex("altura"));
+            }
+        }
     }
 
     private ContentValues retornaValues()

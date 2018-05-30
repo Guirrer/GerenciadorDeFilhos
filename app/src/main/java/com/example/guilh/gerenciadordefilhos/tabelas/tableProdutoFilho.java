@@ -1,6 +1,19 @@
 package com.example.guilh.gerenciadordefilhos.tabelas;
 
-public class tableProdutoFilho {
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+
+import com.example.guilh.gerenciadordefilhos.Util.Database;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+public class tableProdutoFilho extends Database{
     private static  final String TABLE = "produto_filho";
 
     private Integer produtoFilho_id;
@@ -12,6 +25,14 @@ public class tableProdutoFilho {
     private Integer preco;
     private String detalhe;
     private Integer qtd_compra;
+    private SQLiteDatabase db;
+    private Context context;
+
+    public tableProdutoFilho(Context context) {
+        super(context);
+        this.context = context;
+        db = this.getWritableDatabase();
+    }
 
     public Integer getProdutoFilho_id() {
         return produtoFilho_id;
@@ -108,4 +129,208 @@ public class tableProdutoFilho {
     public String create() { return CREATE; }
 
     public String upgrade() { return DROP; }
+
+    public long insert()
+    {
+        return db.insert(TABLE, null, retornaValues());
+    }
+
+    public int update()
+    {
+        return db.update(TABLE, retornaValues(), "produtoFilho_id = ?", new String[]{ this.produtoFilho_id.toString() });
+    }
+
+    public void selectMaxId()
+    {
+        String query = "SELECT MAX(ID) FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                this.produtoFilho_id = c.getColumnIndex("produtoFilho_id");
+            }
+        }
+    }
+
+    public List<tableProdutoFilho> selectList()
+    {
+        String query = "SELECT * FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        List<tableProdutoFilho> list = new List<tableProdutoFilho>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<tableProdutoFilho> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(@NonNull T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(tableProdutoFilho tableProdutoFilho) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(@NonNull Collection<? extends tableProdutoFilho> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, @NonNull Collection<? extends tableProdutoFilho> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public tableProdutoFilho get(int index) {
+                return null;
+            }
+
+            @Override
+            public tableProdutoFilho set(int index, tableProdutoFilho element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, tableProdutoFilho element) {
+
+            }
+
+            @Override
+            public tableProdutoFilho remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableProdutoFilho> listIterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableProdutoFilho> listIterator(int index) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public List<tableProdutoFilho> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                tableProdutoFilho table = new tableProdutoFilho(this.context);
+                table.produtoFilho_id = c.getInt(c.getColumnIndex("produtoFilho_id"));
+                table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
+                table.filho_id = c.getInt(c.getColumnIndex("filho_id"));
+                table.loja_compra = c.getString(c.getColumnIndex("loja_compra"));
+                table.qtd_pacote = c.getInt(c.getColumnIndex("qtd_pacote"));
+                table.data_compra = c.getString(c.getColumnIndex("data_compra"));
+                table.preco = c.getInt(c.getColumnIndex("preco"));
+                table.detalhe = c.getString(c.getColumnIndex("detalhe"));
+                table.qtd_compra = c.getInt(c.getColumnIndex("qtd_compra"));
+                list.add(table);
+            }
+        }
+        return list;
+    }
+
+    public void select(int id)
+    {
+        String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                this.produtoFilho_id = c.getInt(c.getColumnIndex("produtoFilho_id"));
+                this.produto_id = c.getInt(c.getColumnIndex("produto_id"));
+                this.filho_id = c.getInt(c.getColumnIndex("filho_id"));
+                this.loja_compra = c.getString(c.getColumnIndex("loja_compra"));
+                this.qtd_pacote = c.getInt(c.getColumnIndex("qtd_pacote"));
+                this.data_compra = c.getString(c.getColumnIndex("data_compra"));
+                this.preco = c.getInt(c.getColumnIndex("preco"));
+                this.detalhe = c.getString(c.getColumnIndex("detalhe"));
+                this.qtd_compra = c.getInt(c.getColumnIndex("qtd_compra"));
+            }
+        }
+    }
+
+    private ContentValues retornaValues()
+    {
+        ContentValues values = new ContentValues();
+
+        values.put("produtoFilho_id", this.produtoFilho_id);
+        values.put("produto_id", this.produto_id);
+        values.put("filho_id", this.filho_id);
+        values.put("loja_compra", this.loja_compra);
+        values.put("qtd_pacote", this.qtd_pacote);
+        values.put("data_compra", this.data_compra);
+        values.put("preco", this.preco);
+        values.put("detalhe", this.detalhe);
+        values.put("qtd_compra", this.qtd_compra);
+
+        return  values;
+    }
 }

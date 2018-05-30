@@ -1,6 +1,6 @@
 package com.example.guilh.gerenciadordefilhos.tabelas;
 
-public class tableEventoDosFilhos {
+public class tableEventoDosFilhos  {
     private static  final String TABLE = "eventos_dos_filhos";
 
     private Integer filho_id;
@@ -39,4 +39,6 @@ public class tableEventoDosFilhos {
     public String create() { return CREATE; }
 
     public String upgrade() { return DROP; }
+
+
 }

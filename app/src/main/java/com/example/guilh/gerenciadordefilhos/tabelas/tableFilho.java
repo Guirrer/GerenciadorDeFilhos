@@ -98,163 +98,165 @@ public class tableFilho extends Database {
             return db.insert(TABLE, null, retornaValues());
         }
 
-        public int update()
-        {
-            return db.update(TABLE, retornaValues(), "id = ?", new String[]{ this.id.toString() });
-        }
 
-        public void selectMaxId()
-        {
-            String query = "SELECT MAX(ID) FROM " + TABLE;
-            Cursor c = db.rawQuery(query, null);
-            if (c != null) {
-                c.moveToFirst();
-                if (c.getCount() > 0) {
-                    this.id = c.getColumnIndex("id");
-                }
+
+    public int update()
+    {
+        return db.update(TABLE, retornaValues(), "id = ?", new String[]{ this.id.toString() });
+    }
+
+    public void selectMaxId()
+    {
+        String query = "SELECT MAX(ID) FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                this.id = c.getColumnIndex("id");
             }
         }
+    }
 
-        public List<tableFilho> selectList()
-        {
-            String query = "SELECT * FROM " + TABLE;
-            Cursor c = db.rawQuery(query, null);
-            List<tableFilho> list = new List<tableFilho>() {
-                @Override
-                public int size() {
-                    return 0;
-                }
-
-                @Override
-                public boolean isEmpty() {
-                    return false;
-                }
-
-                @Override
-                public boolean contains(Object o) {
-                    return false;
-                }
-
-                @NonNull
-                @Override
-                public Iterator<tableFilho> iterator() {
-                    return null;
-                }
-
-                @NonNull
-                @Override
-                public Object[] toArray() {
-                    return new Object[0];
-                }
-
-                @NonNull
-                @Override
-                public <T> T[] toArray(@NonNull T[] a) {
-                    return null;
-                }
-
-                @Override
-                public boolean add(tableFilho tableFilho) {
-                    return false;
-                }
-
-                @Override
-                public boolean remove(Object o) {
-                    return false;
-                }
-
-                @Override
-                public boolean containsAll(@NonNull Collection<?> c) {
-                    return false;
-                }
-
-                @Override
-                public boolean addAll(@NonNull Collection<? extends tableFilho> c) {
-                    return false;
-                }
-
-                @Override
-                public boolean addAll(int index, @NonNull Collection<? extends tableFilho> c) {
-                    return false;
-                }
-
-                @Override
-                public boolean removeAll(@NonNull Collection<?> c) {
-                    return false;
-                }
-
-                @Override
-                public boolean retainAll(@NonNull Collection<?> c) {
-                    return false;
-                }
-
-                @Override
-                public void clear() {
-
-                }
-
-                @Override
-                public tableFilho get(int index) {
-                    return null;
-                }
-
-                @Override
-                public tableFilho set(int index, tableFilho element) {
-                    return null;
-                }
-
-                @Override
-                public void add(int index, tableFilho element) {
-
-                }
-
-                @Override
-                public tableFilho remove(int index) {
-                    return null;
-                }
-
-                @Override
-                public int indexOf(Object o) {
-                    return 0;
-                }
-
-                @Override
-                public int lastIndexOf(Object o) {
-                    return 0;
-                }
-
-                @NonNull
-                @Override
-                public ListIterator<tableFilho> listIterator() {
-                    return null;
-                }
-
-                @NonNull
-                @Override
-                public ListIterator<tableFilho> listIterator(int index) {
-                    return null;
-                }
-
-                @NonNull
-                @Override
-                public List<tableFilho> subList(int fromIndex, int toIndex) {
-                    return null;
-                }
-            };
-            if (c != null) {
-                c.moveToFirst();
-                if (c.getCount() > 0) {
-                    tableFilho table = new tableFilho(this.context);
-                    table.id = c.getInt(c.getColumnIndex("id"));
-                    table.usuario_id = c.getInt(c.getColumnIndex("usuario_id"));
-                    table.nome = c.getString(c.getColumnIndex("nome"));
-                    table.data_nasc = c.getString(c.getColumnIndex("data_nasc"));
-                    table.sexo = c.getString(c.getColumnIndex("sexo"));
-                    list.add(table);
-                }
+    public List<tableFilho> selectList()
+    {
+        String query = "SELECT * FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        List<tableFilho> list = new List<tableFilho>() {
+            @Override
+            public int size() {
+                return 0;
             }
-            return list;
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<tableFilho> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(@NonNull T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(tableFilho tableFilho) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(@NonNull Collection<? extends tableFilho> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, @NonNull Collection<? extends tableFilho> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public tableFilho get(int index) {
+                return null;
+            }
+
+            @Override
+            public tableFilho set(int index, tableFilho element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, tableFilho element) {
+
+            }
+
+            @Override
+            public tableFilho remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableFilho> listIterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableFilho> listIterator(int index) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public List<tableFilho> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                tableFilho table = new tableFilho(this.context);
+                table.id = c.getInt(c.getColumnIndex("id"));
+                table.usuario_id = c.getInt(c.getColumnIndex("usuario_id"));
+                table.nome = c.getString(c.getColumnIndex("nome"));
+                table.data_nasc = c.getString(c.getColumnIndex("data_nasc"));
+                table.sexo = c.getString(c.getColumnIndex("sexo"));
+                list.add(table);
+            }
         }
+        return list;
+    }
 
     public void select(int id)
     {
@@ -272,15 +274,15 @@ public class tableFilho extends Database {
         }
     }
 
-        private ContentValues retornaValues()
-        {
-            ContentValues values = new ContentValues();
+    private ContentValues retornaValues()
+    {
+        ContentValues values = new ContentValues();
 
-            values.put("usuario_id", this.usuario_id);
-            values.put("nome", this.nome);
-            values.put("data_nasc", this.data_nasc);
-            values.put("sexo", this.sexo);
+        values.put("usuario_id", this.usuario_id);
+        values.put("nome", this.nome);
+        values.put("data_nasc", this.data_nasc);
+        values.put("sexo", this.sexo);
 
-            return  values;
-        }
+        return  values;
+    }
 }

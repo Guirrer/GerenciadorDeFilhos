@@ -1,6 +1,19 @@
 package com.example.guilh.gerenciadordefilhos.tabelas;
 
-public class tableEventos {
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+
+import com.example.guilh.gerenciadordefilhos.Util.Database;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+public class tableEventos extends Database {
     private static  final String TABLE = "eventos";
 
     private Integer eventos_id;
@@ -8,6 +21,14 @@ public class tableEventos {
     private String local_evento;
     private String nome_evento;
     private String descricao;
+    private SQLiteDatabase db;
+    private Context context;
+
+    public tableEventos(Context context) {
+        super(context);
+        this.context = context;
+        db = this.getWritableDatabase();
+    }
 
     public Integer getEventos_id() {
         return eventos_id;
@@ -65,4 +86,196 @@ public class tableEventos {
     public String create() { return CREATE; }
 
     public String upgrade() { return DROP; }
+
+    public long insert()
+    {
+        return db.insert(TABLE, null, retornaValues());
+    }
+
+    public int update()
+    {
+        return db.update(TABLE, retornaValues(), "eventos_id = ?", new String[]{ this.eventos_id.toString() });
+    }
+
+    public void selectMaxId()
+    {
+        String query = "SELECT MAX(ID) FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                this.eventos_id = c.getColumnIndex("eventos_id");
+            }
+        }
+    }
+
+    public List<tableEventos> selectList()
+    {
+        String query = "SELECT * FROM " + TABLE;
+        Cursor c = db.rawQuery(query, null);
+        List<tableEventos> list = new List<tableEventos>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<tableEventos> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(@NonNull T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(tableEventos tableEventos) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(@NonNull Collection<? extends tableEventos> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, @NonNull Collection<? extends tableEventos> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(@NonNull Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public tableEventos get(int index) {
+                return null;
+            }
+
+            @Override
+            public tableEventos set(int index, tableEventos element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, tableEventos element) {
+
+            }
+
+            @Override
+            public tableEventos remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableEventos> listIterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<tableEventos> listIterator(int index) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public List<tableEventos> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                tableEventos table = new tableEventos(this.context);
+                table.eventos_id = c.getInt(c.getColumnIndex("eventos_id"));
+                table.datahora_evento = c.getString(c.getColumnIndex("datahora_evento"));
+                table.local_evento = c.getString(c.getColumnIndex("local_evento"));
+                table.nome_evento = c.getString(c.getColumnIndex("nome_evento"));
+                table.descricao = c.getString(c.getColumnIndex("descricao"));
+                list.add(table);
+            }
+        }
+        return list;
+    }
+
+    public void select(int id)
+    {
+        String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                this.eventos_id = c.getInt(c.getColumnIndex("eventos_id"));
+                this.datahora_evento = c.getString(c.getColumnIndex("datahora_evento"));
+                this.local_evento = c.getString(c.getColumnIndex("local_evento"));
+                this.nome_evento = c.getString(c.getColumnIndex("nome_evento"));
+                this.descricao = c.getString(c.getColumnIndex("descricao"));
+            }
+        }
+    }
+
+    private ContentValues retornaValues()
+    {
+        ContentValues values = new ContentValues();
+
+        values.put("eventos_id", this.eventos_id);
+        values.put("datahora_evento", this.datahora_evento);
+        values.put("local_evento", this.local_evento);
+        values.put("nome_evento", this.nome_evento);
+        values.put("descricao", this.descricao);
+
+        return  values;
+    }
 }

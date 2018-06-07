@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableUsuario extends Database {
+public class    tableUsuario extends Database {
     private static  final String TABLE = "usuario";
 
     private Integer id;
@@ -251,6 +251,20 @@ public class tableUsuario extends Database {
                 this.telefone = c.getInt(c.getColumnIndex("telefone"));
             }
         }
+    }
+
+    public boolean selectUser(String user, String senha)
+    {
+        boolean valid = false;
+        String query = "SELECT * FROM " + TABLE + " WHERE nome = " + id + " AND senha = " + senha;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                valid = true;
+            }
+        }
+        return  valid;
     }
 
     private ContentValues retornaValues()

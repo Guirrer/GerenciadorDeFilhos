@@ -56,7 +56,6 @@ public class CadastroFilho extends AppCompatActivity {
                 tableFilho.selectMaxId();
                 tableMedidas.setFilho_id(tableFilho.getId());
                 tableMedidas.insert();
-
             }
         });
 

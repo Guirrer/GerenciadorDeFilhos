@@ -11,14 +11,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_marginTop="50px"
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/semfilho"
-            android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
+            <LinearLayout
+                android:id="@+id/mContent"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></LinearLayout>
+        </ScrollView>
+    </LinearLayout>
         <Button
             android:id="@+id/cadatrarFilho"
             android:layout_width="wrap_content"

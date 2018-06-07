@@ -31,7 +31,7 @@ public class CadastroUsuario extends AppCompatActivity {
 
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
 
-        tableUsuario = new tableUsuario();
+        tableUsuario = new tableUsuario(this.getApplicationContext());
 
 
 

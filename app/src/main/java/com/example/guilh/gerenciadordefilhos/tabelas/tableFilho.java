@@ -285,4 +285,10 @@ public class tableFilho extends Database {
 
         return  values;
     }
+
+    @Override
+    public String toString()
+    {
+        return nome;
+    }
 }

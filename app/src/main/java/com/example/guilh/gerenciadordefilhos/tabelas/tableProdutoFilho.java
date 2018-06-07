@@ -22,7 +22,7 @@ public class tableProdutoFilho extends Database{
     private String loja_compra;
     private Integer qtd_pacote;
     private String data_compra;
-    private Integer preco;
+    private Float preco;
     private String detalhe;
     private Integer qtd_compra;
     private SQLiteDatabase db;
@@ -82,11 +82,11 @@ public class tableProdutoFilho extends Database{
         this.data_compra = data_compra;
     }
 
-    public Integer getPreco() {
+    public Float getPreco() {
         return preco;
     }
 
-    public void setPreco(Integer preco) {
+    public void setPreco(Float preco) {
         this.preco = preco;
     }
 
@@ -114,7 +114,7 @@ public class tableProdutoFilho extends Database{
                     "loja_compra VARCHAR(255) NULL DEFAULT NULL, " +
                     "qtd_pacote INT(11) NULL DEFAULT NULL, " +
                     "data_compra DATE NULL DEFAULT NULL, " +
-                    "preco INT(10) UNSIGNED NULL DEFAULT NULL, " +
+                    "preco FLOAT(10,2) UNSIGNED NULL DEFAULT NULL, " +
                     "detalhe VARCHAR(255) NULL DEFAULT NULL, " +
                     "qtd_compra INT(11) NULL DEFAULT NULL, " +
                     "PRIMARY KEY (produtoFilho_id), " +
@@ -288,7 +288,7 @@ public class tableProdutoFilho extends Database{
                 table.loja_compra = c.getString(c.getColumnIndex("loja_compra"));
                 table.qtd_pacote = c.getInt(c.getColumnIndex("qtd_pacote"));
                 table.data_compra = c.getString(c.getColumnIndex("data_compra"));
-                table.preco = c.getInt(c.getColumnIndex("preco"));
+                table.preco = c.getFloat(c.getColumnIndex("preco"));
                 table.detalhe = c.getString(c.getColumnIndex("detalhe"));
                 table.qtd_compra = c.getInt(c.getColumnIndex("qtd_compra"));
                 list.add(table);
@@ -310,7 +310,7 @@ public class tableProdutoFilho extends Database{
                 this.loja_compra = c.getString(c.getColumnIndex("loja_compra"));
                 this.qtd_pacote = c.getInt(c.getColumnIndex("qtd_pacote"));
                 this.data_compra = c.getString(c.getColumnIndex("data_compra"));
-                this.preco = c.getInt(c.getColumnIndex("preco"));
+                this.preco = c.getFloat(c.getColumnIndex("preco"));
                 this.detalhe = c.getString(c.getColumnIndex("detalhe"));
                 this.qtd_compra = c.getInt(c.getColumnIndex("qtd_compra"));
             }

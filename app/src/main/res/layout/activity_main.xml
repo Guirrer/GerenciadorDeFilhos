@@ -24,7 +24,7 @@
             android:layout_gravity="center"/>
 
         <EditText
-            android:id="@+id/tvLogin"
+            android:id="@+id/etLogin"
             android:layout_width="330dp"
             android:layout_height="50dp"
             android:layout_gravity="center"/>
@@ -38,7 +38,7 @@
             android:layout_gravity="center"/>
 
         <EditText
-            android:id="@+id/tvSenha"
+            android:id="@+id/etSenha"
             android:layout_width="330dp"
             android:layout_height="50dp"
             android:ems="10"

@@ -233,4 +233,10 @@ public class tableProdutos extends Database {
 
         return  values;
     }
+
+    @Override
+    public String toString()
+    {
+        return nome;
+    }
 }

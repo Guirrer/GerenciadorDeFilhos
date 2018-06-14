@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableVacinas extends Database {
+public class tableVacinas {
     private static  final String TABLE = "vacinas";
 
     private Integer id;
@@ -23,14 +23,6 @@ public class tableVacinas extends Database {
     private Float validade;
     private Float periodicidade;
 
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableVacinas(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
 
     public Integer getVacina_id() {
@@ -83,12 +75,12 @@ public class tableVacinas extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "nome_vacina VARCHAR(255) NOT NULL, " +
-                    "idade_minima INT(11) UNSIGNED NULL DEFAULT NULL, " +
-                    "dose INT(11) UNSIGNED NULL DEFAULT NULL, " +
-                    "validade FLOAT UNSIGNED NULL DEFAULT NULL, " +
-                    "periodicidade FLOAT UNSIGNED NULL DEFAULT NULL, " +
+                    "id INTEGER NOT NULL , " +
+                    "nome_vacina TEXT NOT NULL, " +
+                    "idade_minima INTEGER NULL DEFAULT NULL, " +
+                    "dose INTEGER NULL DEFAULT NULL, " +
+                    "validade FLOAT NULL DEFAULT NULL, " +
+                    "periodicidade FLOAT NULL DEFAULT NULL, " +
                     "PRIMARY KEY (vacina_id), " +
                     ")";
 
@@ -98,7 +90,7 @@ public class tableVacinas extends Database {
 
     public String upgrade() { return DROP; }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);
@@ -115,7 +107,7 @@ public class tableVacinas extends Database {
         }
     }
 
-    public void selectList()
+    public void selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);
@@ -244,7 +236,7 @@ public class tableVacinas extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableVacinas table = new tableVacinas(this.context);
+                tableVacinas table = new tableVacinas();
                 table.id = c.getInt(c.getColumnIndex("id"));
                 table.nome_vacina = c.getString(c.getColumnIndex("nome_vacina"));
                 table.idade_minima = c.getInt(c.getColumnIndex("idade_minima"));
@@ -256,12 +248,12 @@ public class tableVacinas extends Database {
         }
     }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "id = ?", new String[]{ this.id.toString() });
     }

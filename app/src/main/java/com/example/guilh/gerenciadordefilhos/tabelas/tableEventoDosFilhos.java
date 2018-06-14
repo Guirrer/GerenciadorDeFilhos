@@ -25,13 +25,11 @@ public class tableEventoDosFilhos  {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "filho_id int(10) unsigned NOT NULL," +
-                    "eventos_id int(10) unsigned NOT NULL," +
-                    "PRIMARY KEY ( filho_id , eventos_id)," +
-                    "KEY filho_has_eventos_FKIndex1 ( filho_id )," +
-                    "KEY filho_has_eventos_FKIndex2 ( eventos_id )," +
-                    "CONSTRAINT eventos_dos_filhos_ibfk_1 FOREIGN KEY (filho_id) REFERENCES filho (filho_id) ON DELETE NO ACTION ON UPDATE NO ACTION, " +
-                    "CONSTRAINT eventos_dos_filhos_ibfk_2 FOREIGN KEY (eventos_id) REFERENCES eventos (eventos_id) ON DELETE NO ACTION ON UPDATE NO ACTION " +
+                    "filho_id INTEGER NOT NULL, " +
+                    "eventos_id INTEGER NOT NULL, " +
+                    "PRIMARY KEY ( filho_id , eventos_id), " +
+                    "FOREIGN KEY (filho_id) REFERENCES filho (filho_id) ON DELETE NO ACTION ON UPDATE NO ACTION, " +
+                    "FOREIGN KEY (eventos_id) REFERENCES eventos (eventos_id) ON DELETE NO ACTION ON UPDATE NO ACTION " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;

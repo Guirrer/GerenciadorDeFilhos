@@ -13,21 +13,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class    tableUsuario extends Database {
+public class    tableUsuario {
     private static  final String TABLE = "usuario";
 
     private Integer id;
     private String nome;
     private String senha;
     private Integer telefone;
-    private SQLiteDatabase db;
-    private Context context;
 
-    public tableUsuario(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
     public Integer getId() {
         return id;
@@ -63,10 +56,10 @@ public class    tableUsuario extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "nome VARCHAR(255) NOT NULL, " +
-                    "senha VARCHAR(60) NOT NULL, " +
-                    "telefone INT(11) NOT NULL, " +
+                    "id INTEGER NOT NULL , " +
+                    "nome TEXT NOT NULL, " +
+                    "senha TEXT NOT NULL, " +
+                    "telefone INTEGER NOT NULL, " +
                     "PRIMARY KEY (id), " +
                     ")";
 
@@ -76,17 +69,17 @@ public class    tableUsuario extends Database {
 
     public String upgrade() { return DROP; }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "id = ?", new String[]{ this.id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -98,7 +91,7 @@ public class    tableUsuario extends Database {
         }
     }
 
-    public List<tableUsuario> selectList()
+    public List<tableUsuario> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -227,7 +220,7 @@ public class    tableUsuario extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableUsuario table = new tableUsuario(this.context);
+                tableUsuario table = new tableUsuario();
                 table.id = c.getInt(c.getColumnIndex("id"));
                 table.nome = c.getString(c.getColumnIndex("nome"));
                 table.senha = c.getString(c.getColumnIndex("senha"));
@@ -238,7 +231,7 @@ public class    tableUsuario extends Database {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);
@@ -253,7 +246,7 @@ public class    tableUsuario extends Database {
         }
     }
 
-    public boolean selectUser(String user, String senha)
+    public boolean selectUser(String user, String senha, SQLiteDatabase db)
     {
         boolean valid = false;
         String query = "SELECT * FROM " + TABLE + " WHERE nome = " + id + " AND senha = " + senha;

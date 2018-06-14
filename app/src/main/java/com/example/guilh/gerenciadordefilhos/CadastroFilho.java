@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.*;
 
 public class CadastroFilho extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class CadastroFilho extends AppCompatActivity {
 
     private tableFilho tableFilho;
     private tableMedidas tableMedidas;
+    private  Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,10 @@ public class CadastroFilho extends AppCompatActivity {
 
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
 
-        tableFilho = new tableFilho(getApplicationContext());
-        tableMedidas = new tableMedidas(getApplicationContext());
+        db = new Database(getApplicationContext());
+
+        tableFilho = new tableFilho();
+        tableMedidas = new tableMedidas();
 
         btnCadastrar.setOnClickListener(new View.OnClickListener()
         {
@@ -52,10 +56,10 @@ public class CadastroFilho extends AppCompatActivity {
                 tableMedidas.setAltura(Float.parseFloat(etAltura.getText().toString()));
                 tableMedidas.setPeso(Float.parseFloat(etPeso.getText().toString()));
                 tableMedidas.setTam_pe(Integer.parseInt(edtTamPe.getText().toString()));
-                tableFilho.insert();
-                tableFilho.selectMaxId();
+                tableFilho.insert(db.getReadableDatabase());
+                tableFilho.selectMaxId(db.getReadableDatabase());
                 tableMedidas.setFilho_id(tableFilho.getId());
-                tableMedidas.insert();
+                tableMedidas.insert(db.getReadableDatabase());
             }
         });
 

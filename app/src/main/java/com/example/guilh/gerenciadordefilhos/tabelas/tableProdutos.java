@@ -13,19 +13,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableProdutos extends Database {
+public class tableProdutos{
     private static  final String TABLE = "produtos";
 
     private Integer produto_id;
     private String nome;
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableProdutos(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
     public Integer getProduto_id() {
         return produto_id;
@@ -45,8 +37,8 @@ public class tableProdutos extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "produto_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "nome VARCHAR(255) NOT NULL, " +
+                    "produto_id INTEGER NOT NULL , " +
+                    "nome TEXT NOT NULL, " +
                     "PRIMARY KEY (produto_id), " +
                     ")";
 
@@ -56,12 +48,12 @@ public class tableProdutos extends Database {
 
     public String upgrade() { return DROP; }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "produto_id = ?", new String[]{ this.produto_id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -73,7 +65,7 @@ public class tableProdutos extends Database {
         }
     }
 
-    public List<tableProdutos> selectList()
+    public List<tableProdutos> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -202,7 +194,7 @@ public class tableProdutos extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableProdutos table = new tableProdutos(this.context);
+                tableProdutos table = new tableProdutos();
                 table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
                 table.nome = c.getString(c.getColumnIndex("nome"));
                 list.add(table);
@@ -211,7 +203,7 @@ public class tableProdutos extends Database {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

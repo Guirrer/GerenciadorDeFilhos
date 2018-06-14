@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.Date;
 import java.util.List;
+
+import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableFilho;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableProdutoFilho;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableProdutos;
@@ -32,6 +34,7 @@ public class TelaProduto extends AppCompatActivity {
     private EditText etData;
     private EditText etLocalCompra;
     private Button btnCadastrarProduto;
+    Database db;
 
     private List<tableProdutos> nomeProduto;
     private List<tableFilho> nomeFilho;
@@ -39,10 +42,11 @@ public class TelaProduto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        produto = new tableProdutos(this.getApplicationContext());
-        nomeProduto = produto.selectList();
-        filho = new tableFilho(this.getApplicationContext());
-        nomeFilho = filho.selectList();
+        db = new Database(this.getApplicationContext());
+        produto = new tableProdutos();
+        nomeProduto = produto.selectList(db.getReadableDatabase());
+        filho = new tableFilho();
+        nomeFilho = filho.selectList(db.getReadableDatabase());
         spNomeFilho =  (Spinner) findViewById(R.id.spNomeFilho);
         spNomeProduto =  (Spinner) findViewById(R.id.spNomeProduto);
         etDetalhe =  (EditText) findViewById(R.id.etDetalhe);
@@ -89,7 +93,7 @@ public class TelaProduto extends AppCompatActivity {
         btnCadastrarProduto.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v) {
-                tableProdutoFilho TableProdutoFilho = new tableProdutoFilho(getApplicationContext());
+                tableProdutoFilho TableProdutoFilho = new tableProdutoFilho();
                 TableProdutoFilho.setFilho_id(filho.getId());
                 TableProdutoFilho.setProduto_id(produto.getProduto_id());
                 TableProdutoFilho.setDetalhe(etDetalhe.getText().toString());
@@ -98,7 +102,7 @@ public class TelaProduto extends AppCompatActivity {
                 TableProdutoFilho.setPreco(Float.parseFloat(etPreco.getText().toString()));
                 TableProdutoFilho.setData_compra(etData.getText().toString());
                 TableProdutoFilho.setLoja_compra(etLocalCompra.getText().toString());
-                TableProdutoFilho.insert();
+                TableProdutoFilho.insert(db.getReadableDatabase());
 
             }
         });

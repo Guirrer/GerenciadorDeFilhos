@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableMedidas extends Database {
+public class tableMedidas {
     private static  final String TABLE = "medidas";
 
     private Integer filho_id;
@@ -21,14 +21,6 @@ public class tableMedidas extends Database {
     private Float peso;
     private Integer tam_pe;
     private Float altura;
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableMedidas(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
     public Integer getFilho_id() {
         return filho_id;
@@ -72,15 +64,14 @@ public class tableMedidas extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "filho_id INT(10) UNSIGNED NOT NULL, " +
+                    "id INTEGER NOT NULL , " +
+                    "filho_id INTEGER NOT NULL, " +
                     "data_dado DATE NOT NULL, " +
-                    "peso FLOAT UNSIGNED NULL DEFAULT NULL, " +
-                    "tam_pe INT(11) UNSIGNED NULL DEFAULT NULL, " +
+                    "peso FLOAT NULL DEFAULT NULL, " +
+                    "tam_pe INTEGER NULL DEFAULT NULL, " +
                     "altura FLOAT NULL DEFAULT NULL, " +
                     "PRIMARY KEY (id), " +
-                    "INDEX filho_FKIndex1 (filho_id), " +
-                    "CONSTRAINT medidas_ibfk_1 FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -89,17 +80,17 @@ public class tableMedidas extends Database {
 
     public String upgrade() { return DROP; }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "filho_id = ?", new String[]{ this.filho_id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -111,7 +102,7 @@ public class tableMedidas extends Database {
         }
     }
 
-    public List<tableMedidas> selectList()
+    public List<tableMedidas> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -240,7 +231,7 @@ public class tableMedidas extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableMedidas table = new tableMedidas(this.context);
+                tableMedidas table = new tableMedidas();
                 table.filho_id = c.getInt(c.getColumnIndex("eventos_id"));
                 table.data_dado = c.getString(c.getColumnIndex("data_dado"));
                 table.peso = c.getFloat(c.getColumnIndex("peso"));
@@ -252,7 +243,7 @@ public class tableMedidas extends Database {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

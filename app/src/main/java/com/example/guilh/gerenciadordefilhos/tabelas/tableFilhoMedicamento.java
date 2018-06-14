@@ -13,21 +13,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableFilhoMedicamento extends Database {
+public class tableFilhoMedicamento {
     private static  final String TABLE = "filhomedicamento";
 
     private Integer idfilho_medicamento;
     private Integer filho_id;
     private Integer medicamento_id;
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableFilhoMedicamento(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
-
     public Integer getIdfilho_medicamento() {
         return idfilho_medicamento;
     }
@@ -54,17 +45,15 @@ public class tableFilhoMedicamento extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "idfilho_medicamento INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "filho_id INT(10) UNSIGNED NOT NULL, " +
-                    "medicamento_id INT(10) UNSIGNED NOT NULL, " +
-                    "dosagem FLOAT UNSIGNED NULL DEFAULT NULL, " +
-                    "periodo FLOAT UNSIGNED NULL DEFAULT NULL, " +
-                    "observacao VARCHAR(255) NULL DEFAULT NULL, " +
-                    "PRIMARY KEY (idfilho_medicamento), " +
-                    "INDEX filho_medicamento_FKIndex1 (filho_id), " +
-                    "INDEX filho_medicamento_FKIndex2 (medicamento_id), " +
-                    "CONSTRAINT filho_medicamento_ibfk_1 FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
-                    "CONSTRAINT filho_medicamento_ibfk_2 FOREIGN KEY (medicamento_id) REFERENCES medicamento (medicamento_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "idfilho_medicamento INTEGER  NOT NULL , " +
+                    "filho_id INTEGER NOT NULL, " +
+                    "medicamento_id INTEGER NOT NULL, " +
+                    "dosagem FLOAT  NULL DEFAULT NULL, " +
+                    "periodo FLOAT  NULL DEFAULT NULL, " +
+                    "observacao TEXT NULL DEFAULT NULL, " +
+                    "PRIMARY KEY (idfilho_medicamento), "  +
+                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (medicamento_id) REFERENCES medicamento (medicamento_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -73,17 +62,17 @@ public class tableFilhoMedicamento extends Database {
 
     public String upgrade() { return DROP; }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "idfilho_medicamento = ?", new String[]{ this.idfilho_medicamento.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -95,7 +84,7 @@ public class tableFilhoMedicamento extends Database {
         }
     }
 
-    public List<tableFilhoMedicamento> selectList()
+    public List<tableFilhoMedicamento> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -224,7 +213,7 @@ public class tableFilhoMedicamento extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableFilhoMedicamento table = new tableFilhoMedicamento(this.context);
+                tableFilhoMedicamento table = new tableFilhoMedicamento();
                 table.idfilho_medicamento = c.getInt(c.getColumnIndex("idfilho_medicamento"));
                 table.filho_id = c.getInt(c.getColumnIndex("filho_id"));
                 table.medicamento_id = c.getInt(c.getColumnIndex("medicamento_id"));
@@ -234,7 +223,7 @@ public class tableFilhoMedicamento extends Database {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

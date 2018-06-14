@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableUsuario;
 
 public class CadastroUsuario extends AppCompatActivity {
@@ -31,7 +32,9 @@ public class CadastroUsuario extends AppCompatActivity {
 
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
 
-        tableUsuario = new tableUsuario(this.getApplicationContext());
+        Database db = new Database(getApplicationContext());
+
+        tableUsuario = new tableUsuario();
 
 
 

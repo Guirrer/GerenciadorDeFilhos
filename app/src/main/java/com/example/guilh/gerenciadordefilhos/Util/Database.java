@@ -6,6 +6,7 @@ package com.example.guilh.gerenciadordefilhos.Util;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.guilh.gerenciadordefilhos.tabelas.tableEventoDosFilhos;
 import com.example.guilh.gerenciadordefilhos.tabelas.*;
@@ -30,9 +31,9 @@ public class Database extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         eventosFilhos = new tableEventoDosFilhos();
         eventos = new tableEventos();
-        filho = new tableFilho(context);
+        filho = new tableFilho();
         filhoMedicamento = new tableFilhoMedicamento();
-        medidas = new tableMedidas(context);
+        medidas = new tableMedidas();
         produtoFilho = new tableProdutoFilho();
         produtos = new tableProdutos();
         usuario = new tableUsuario();

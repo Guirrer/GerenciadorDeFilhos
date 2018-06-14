@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableMedicamento extends Database {
+public class tableMedicamento {
     private static  final String TABLE = "medicamento";
 
     private Integer medicamento_id;
@@ -24,13 +24,12 @@ public class tableMedicamento extends Database {
     private String local_compra;
     private Integer qtd;
     private SQLiteDatabase db;
-    private Context context;
 
-    public tableMedicamento(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
+    public tableMedicamento(SQLiteDatabase db)
+    {
+        this.db = db;
     }
+
 
     public Integer getMedicamento_id() {
         return medicamento_id;
@@ -90,13 +89,13 @@ public class tableMedicamento extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "medicamento_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "nome VARCHAR(255) NOT NULL, " +
-                    "laboratorio VARCHAR(255) NOT NULL, " +
-                    "finalidade VARCHAR(255) NOT NULL, " +
+                    "medicamento_id INTEGER NOT NULL , " +
+                    "nome TEXT NOT NULL, " +
+                    "laboratorio TEXT NOT NULL, " +
+                    "finalidade TEXT NOT NULL, " +
                     "valor FLOAT NULL DEFAULT NULL, " +
-                    "local_compra VARCHAR(255) NULL DEFAULT NULL, " +
-                    "qtd INT(10) UNSIGNED NOT NULL, " +
+                    "local_compra TEXT NULL DEFAULT NULL, " +
+                    "qtd INTEGER  NOT NULL, " +
                     "PRIMARY KEY (medicamento_id), " +
                     ")";
 
@@ -106,17 +105,17 @@ public class tableMedicamento extends Database {
 
     public String upgrade() { return DROP; }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "medicamento_id = ?", new String[]{ this.medicamento_id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -257,7 +256,7 @@ public class tableMedicamento extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableMedicamento table = new tableMedicamento(this.context);
+                tableMedicamento table = new tableMedicamento(db);
                 table.medicamento_id = c.getInt(c.getColumnIndex("medicamento_id"));
                 table.nome = c.getString(c.getColumnIndex("nome"));
                 table.laboratorio = c.getString(c.getColumnIndex("laboratorio"));

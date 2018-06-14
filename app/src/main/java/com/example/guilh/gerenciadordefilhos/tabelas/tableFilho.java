@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableFilho extends Database {
+public class tableFilho {
     private static  final String TABLE = "filho";
 
     private Integer id;
@@ -21,14 +21,6 @@ public class tableFilho extends Database {
     private String nome;
     private String data_nasc;
     private String sexo;
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableFilho(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
     public Integer getId() {
         return id;
@@ -72,14 +64,13 @@ public class tableFilho extends Database {
 
         private static final String CREATE =
                 "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                        "id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                        "usuario_id INT(10) UNSIGNED NOT NULL, " +
-                        "nome VARCHAR(255) NOT NULL, " +
+                        "id INTEGER NOT NULL , " +
+                        "usuario_id INTEGER NOT NULL, " +
+                        "nome TEXT NOT NULL, " +
                         "data_nasc DATE NULL DEFAULT NULL, " +
-                        "sexo VARCHAR(255) NULL DEFAULT NULL, " +
-                        " PRIMARY KEY (id), " +
-                        " INDEX filho_FKIndex1 (usuario_id), " +
-                        " CONSTRAINT filho_ibfk_1 FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON UPDATE NO ACTION ON DELETE NO ACTION" +
+                        "sexo TEXT NULL DEFAULT NULL, " +
+                        " PRIMARY KEY (id), "  +
+                        " FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON UPDATE NO ACTION ON DELETE NO ACTION" +
                         ")";
 
         private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -93,19 +84,19 @@ public class tableFilho extends Database {
         }
 
 
-        public long insert()
+        public long insert(SQLiteDatabase db)
         {
             return db.insert(TABLE, null, retornaValues());
         }
 
 
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "id = ?", new String[]{ this.id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -117,7 +108,7 @@ public class tableFilho extends Database {
         }
     }
 
-    public List<tableFilho> selectList()
+    public List<tableFilho> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -246,7 +237,7 @@ public class tableFilho extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableFilho table = new tableFilho(this.context);
+                tableFilho table = new tableFilho();
                 table.id = c.getInt(c.getColumnIndex("id"));
                 table.usuario_id = c.getInt(c.getColumnIndex("usuario_id"));
                 table.nome = c.getString(c.getColumnIndex("nome"));
@@ -258,7 +249,7 @@ public class tableFilho extends Database {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

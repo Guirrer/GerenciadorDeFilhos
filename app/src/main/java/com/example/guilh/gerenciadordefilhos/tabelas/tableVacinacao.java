@@ -13,20 +13,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableVacinacao extends Database {
+public class tableVacinacao {
     private static  final String TABLE = "vacinacao";
 
     private Integer vacinas_id;
     private Integer filho_id;
     private String data_vacina;
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableVacinacao(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
     public Integer getVacinas_id() {
         return vacinas_id;
@@ -54,14 +46,12 @@ public class tableVacinacao extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "vacinas_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "filho_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
+                    "vacinas_id INTEGER NOT NULL , " +
+                    "filho_id INTEGER NOT NULL , " +
                     "data_vacina DATE NOT NULL, " +
                     "PRIMARY KEY (vacinas_id, filho_id), " +
-                    "INDEX vacinas_has_filho_FKIndex1 (vacinas_id), " +
-                    "INDEX vacinas_has_filho_FKIndex2 (filho_id), " +
-                    "CONSTRAINT vacinacao_ibfk_1 FOREIGN KEY (vacinas_id) REFERENCES vacinas (vacina_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
-                    "CONSTRAINT vacinacao_ibfk_2 FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (vacinas_id) REFERENCES vacinas (vacina_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -70,17 +60,17 @@ public class tableVacinacao extends Database {
 
     public String upgrade() { return DROP; }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "vacinas_id = ?", new String[]{ this.vacinas_id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -92,7 +82,7 @@ public class tableVacinacao extends Database {
         }
     }
 
-    public List<tableVacinacao> selectList()
+    public List<tableVacinacao> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -221,7 +211,7 @@ public class tableVacinacao extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableVacinacao table = new tableVacinacao(this.context);
+                tableVacinacao table = new tableVacinacao();
                 table.vacinas_id = c.getInt(c.getColumnIndex("vacinas_id"));
                 table.filho_id = c.getInt(c.getColumnIndex("filho_id"));
                 table.data_vacina = c.getString(c.getColumnIndex("data_vacina"));
@@ -231,7 +221,7 @@ public class tableVacinacao extends Database {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

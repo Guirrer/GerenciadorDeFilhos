@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableProdutoFilho extends Database{
+public class tableProdutoFilho{
     private static  final String TABLE = "produto_filho";
 
     private Integer produtoFilho_id;
@@ -25,18 +25,13 @@ public class tableProdutoFilho extends Database{
     private Float preco;
     private String detalhe;
     private Integer qtd_compra;
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableProdutoFilho(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
     public Integer getProdutoFilho_id() {
         return produtoFilho_id;
     }
+
+
+
 
     public void setProdutoFilho_id(Integer produtoFilho_id) {
         this.produtoFilho_id = produtoFilho_id;
@@ -108,20 +103,18 @@ public class tableProdutoFilho extends Database{
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "produtoFilho_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
-                    "produto_id INT(10) UNSIGNED NOT NULL, " +
-                    "filho_id INT(10) UNSIGNED NOT NULL , " +
-                    "loja_compra VARCHAR(255) NULL DEFAULT NULL, " +
-                    "qtd_pacote INT(11) NULL DEFAULT NULL, " +
+                    "produtoFilho_id INTEGER NOT NULL , " +
+                    "produto_id INTEGER NOT NULL, " +
+                    "filho_id INTEGER NOT NULL , " +
+                    "loja_compra TEXT NULL DEFAULT NULL, " +
+                    "qtd_pacote INTEGER NULL DEFAULT NULL, " +
                     "data_compra DATE NULL DEFAULT NULL, " +
-                    "preco FLOAT(10,2) UNSIGNED NULL DEFAULT NULL, " +
-                    "detalhe VARCHAR(255) NULL DEFAULT NULL, " +
-                    "qtd_compra INT(11) NULL DEFAULT NULL, " +
+                    "preco FLOAT NULL DEFAULT NULL, " +
+                    "detalhe TEXT NULL DEFAULT NULL, " +
+                    "qtd_compra INTEGER NULL DEFAULT NULL, " +
                     "PRIMARY KEY (produtoFilho_id), " +
-                    "INDEX produto_FKIndex1 (filho_id), " +
-                    "INDEX produto_filho_FKIndex2 (produto_id), " +
-                    "CONSTRAINT produto_filho_ibfk_1 FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
-                    "CONSTRAINT produto_filho_ibfk_2 FOREIGN KEY (produto_id) REFERENCES produto (produto_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (produto_id) REFERENCES produto (produto_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -130,17 +123,17 @@ public class tableProdutoFilho extends Database{
 
     public String upgrade() { return DROP; }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "produtoFilho_id = ?", new String[]{ this.produtoFilho_id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -152,7 +145,7 @@ public class tableProdutoFilho extends Database{
         }
     }
 
-    public List<tableProdutoFilho> selectList()
+    public List<tableProdutoFilho> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -281,7 +274,7 @@ public class tableProdutoFilho extends Database{
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableProdutoFilho table = new tableProdutoFilho(this.context);
+                tableProdutoFilho table = new tableProdutoFilho();
                 table.produtoFilho_id = c.getInt(c.getColumnIndex("produtoFilho_id"));
                 table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
                 table.filho_id = c.getInt(c.getColumnIndex("filho_id"));
@@ -297,7 +290,7 @@ public class tableProdutoFilho extends Database{
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableEventos extends Database {
+public class tableEventos {
     private static  final String TABLE = "eventos";
 
     private Integer eventos_id;
@@ -21,14 +21,6 @@ public class tableEventos extends Database {
     private String local_evento;
     private String nome_evento;
     private String descricao;
-    private SQLiteDatabase db;
-    private Context context;
-
-    public tableEventos(Context context) {
-        super(context);
-        this.context = context;
-        db = this.getWritableDatabase();
-    }
 
     public Integer getEventos_id() {
         return eventos_id;
@@ -73,12 +65,12 @@ public class tableEventos extends Database {
 
     private static final String CREATE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
-                    "eventos_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, " +
+                    "eventos_id INTEGER NOT NULL , " +
                     "datahora_evento DATE NOT NULL, " +
-                    "local_evento VARCHAR(255) NULL DEFAULT NULL, " +
-                    "nome_evento VARCHAR(100) NULL DEFAULT NULL, " +
-                    "descricao VARCHAR(255) NULL DEFAULT NULL, " +
-                    "PRIMARY KEY (eventos_id), " +
+                    "local_evento TEXT NULL DEFAULT NULL, " +
+                    "nome_evento TEXT NULL DEFAULT NULL, " +
+                    "descricao TEXT NULL DEFAULT NULL, " +
+                    "PRIMARY KEY (eventos_id)" + " " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -87,17 +79,17 @@ public class tableEventos extends Database {
 
     public String upgrade() { return DROP; }
 
-    public long insert()
+    public long insert(SQLiteDatabase db)
     {
         return db.insert(TABLE, null, retornaValues());
     }
 
-    public int update()
+    public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "eventos_id = ?", new String[]{ this.eventos_id.toString() });
     }
 
-    public void selectMaxId()
+    public void selectMaxId(SQLiteDatabase db)
     {
         String query = "SELECT MAX(ID) FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -109,7 +101,7 @@ public class tableEventos extends Database {
         }
     }
 
-    public List<tableEventos> selectList()
+    public List<tableEventos> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -238,7 +230,7 @@ public class tableEventos extends Database {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableEventos table = new tableEventos(this.context);
+                tableEventos table = new tableEventos();
                 table.eventos_id = c.getInt(c.getColumnIndex("eventos_id"));
                 table.datahora_evento = c.getString(c.getColumnIndex("datahora_evento"));
                 table.local_evento = c.getString(c.getColumnIndex("local_evento"));
@@ -250,7 +242,7 @@ public class tableEventos extends Database {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id,SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

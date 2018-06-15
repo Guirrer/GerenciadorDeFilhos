@@ -21,7 +21,13 @@
         <activity android:name=".CadastroUsuario" />
         <activity android:name=".CadastroVacinas" />
         <activity android:name=".TelaVacina" />
-        <activity android:name=".TelaProduto"></activity>
+        <activity android:name=".TelaProduto" />
+        <activity android:name=".CadastroEvento" />
+        <activity android:name=".TelaEvento" />
+        <activity android:name=".CadastroMedicamento" />
+        <activity android:name=".TelaMedicamento" />
+        <activity android:name=".TelaDetalheMedicamento" />
+        <activity android:name=".TelaVacinacao"></activity>
     </application>
 
 </manifest>

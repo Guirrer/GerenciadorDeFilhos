@@ -23,6 +23,7 @@ public class tableMedicamento {
     private Float valor;
     private String local_compra;
     private Integer qtd;
+    private Float dosagem;
     private SQLiteDatabase db;
 
     public tableMedicamento(SQLiteDatabase db)
@@ -30,6 +31,13 @@ public class tableMedicamento {
         this.db = db;
     }
 
+    public Float getDosagem() {
+        return dosagem;
+    }
+
+    public void setDosagem(Float dosagem) {
+        this.dosagem = dosagem;
+    }
 
     public Integer getMedicamento_id() {
         return medicamento_id;
@@ -264,6 +272,7 @@ public class tableMedicamento {
                 table.valor = c.getFloat(c.getColumnIndex("valor"));
                 table.local_compra = c.getString(c.getColumnIndex("local_compra"));
                 table.qtd = c.getInt(c.getColumnIndex("qtd"));
+                table.dosagem = c.getFloat(c.getColumnIndex("dosagem"));
                 list.add(table);
             }
         }
@@ -283,6 +292,7 @@ public class tableMedicamento {
                 this.finalidade = c.getString(c.getColumnIndex("finalidade"));
                 this.valor = c.getFloat(c.getColumnIndex("valor"));
                 this.qtd = c.getInt(c.getColumnIndex("qtd"));
+                this.dosagem = c.getFloat(c.getColumnIndex("dosagem"));
             }
         }
     }
@@ -297,6 +307,7 @@ public class tableMedicamento {
         values.put("finalidade", this.finalidade);
         values.put("valor", this.valor);
         values.put("qtd", this.qtd);
+        values.put("dosagem", this.dosagem);
 
         return  values;
     }

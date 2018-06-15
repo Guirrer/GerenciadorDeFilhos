@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroEvento">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:textSize="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar Evento"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome do evento"
+                    android:layout_gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etNomeEvento"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:layout_gravity="center"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Data do evento"/>
+
+                <EditText
+                    android:id="@+id/etDtaEvento"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:inputType="date" />
+
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Local do Evento"/>
+
+                <EditText
+                    android:id="@+id/etLocalEvento"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:layout_gravity="center"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    />
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Observações"
+                    />
+
+                <EditText
+                    android:id="@+id/etObservacoes"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:id="@+id/btnCadastrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar Evento"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

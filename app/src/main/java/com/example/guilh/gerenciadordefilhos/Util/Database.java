@@ -1,8 +1,5 @@
 package com.example.guilh.gerenciadordefilhos.Util;
 
-/**
- * Created by guilh on 28/03/2018.
- */
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

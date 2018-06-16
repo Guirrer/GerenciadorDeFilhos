@@ -20,6 +20,7 @@ public class CadastroUsuario extends AppCompatActivity {
 
     private tableUsuario tableUsuario;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

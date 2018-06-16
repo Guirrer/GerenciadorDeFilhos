@@ -30,9 +30,6 @@ public class tableProdutoFilho{
         return produtoFilho_id;
     }
 
-
-
-
     public void setProdutoFilho_id(Integer produtoFilho_id) {
         this.produtoFilho_id = produtoFilho_id;
     }

@@ -3,7 +3,6 @@ package com.example.guilh.gerenciadordefilhos.Util;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.guilh.gerenciadordefilhos.tabelas.tableEventoDosFilhos;
 import com.example.guilh.gerenciadordefilhos.tabelas.*;

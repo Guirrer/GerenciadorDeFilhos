@@ -262,7 +262,6 @@ public class tableEventos {
     {
         ContentValues values = new ContentValues();
 
-        values.put("eventos_id", this.eventos_id);
         values.put("datahora_evento", this.datahora_evento);
         values.put("local_evento", this.local_evento);
         values.put("nome_evento", this.nome_evento);

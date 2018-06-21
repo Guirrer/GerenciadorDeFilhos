@@ -5,35 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TelaPrincipal">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
+            android:layout_height="match_parent">
             <LinearLayout
-                android:id="@+id/mContent"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></LinearLayout>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:textSize="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menu Principal"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:id="@+id/btnCadastrarFilho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar Filho"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
         </ScrollView>
-    </LinearLayout>
-        <Button
-            android:id="@+id/cadatrarFilho"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="100dp"
-            android:layout_marginBottom="200dp"
-            android:text="Cadastrar Filho"
-            android:visibility="visible" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

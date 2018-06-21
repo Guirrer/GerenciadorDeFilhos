@@ -220,7 +220,6 @@ public class tableProdutos{
     {
         ContentValues values = new ContentValues();
 
-        values.put("produto_id", this.produto_id);
         values.put("nome", this.nome);
 
         return  values;

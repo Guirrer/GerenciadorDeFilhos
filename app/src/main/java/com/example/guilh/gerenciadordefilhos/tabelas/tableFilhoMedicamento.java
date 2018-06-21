@@ -241,7 +241,6 @@ public class tableFilhoMedicamento {
     {
         ContentValues values = new ContentValues();
 
-        values.put("idfilho_medicamento", this.idfilho_medicamento);
         values.put("filho_id", this.filho_id);
         values.put("medicamento_id", this.medicamento_id);
 

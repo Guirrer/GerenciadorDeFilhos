@@ -311,7 +311,6 @@ public class tableProdutoFilho{
     {
         ContentValues values = new ContentValues();
 
-        values.put("produtoFilho_id", this.produtoFilho_id);
         values.put("produto_id", this.produto_id);
         values.put("filho_id", this.filho_id);
         values.put("loja_compra", this.loja_compra);

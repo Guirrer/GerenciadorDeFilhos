@@ -239,7 +239,6 @@ public class tableVacinacao {
     {
         ContentValues values = new ContentValues();
 
-        values.put("vacinas_id", this.vacinas_id);
         values.put("filho_id", this.filho_id);
         values.put("data_vacina", this.data_vacina);;
 

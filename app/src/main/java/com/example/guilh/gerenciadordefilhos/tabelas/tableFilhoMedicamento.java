@@ -52,8 +52,8 @@ public class tableFilhoMedicamento {
                     "periodo FLOAT  NULL DEFAULT NULL, " +
                     "observacao TEXT NULL DEFAULT NULL, " +
                     "PRIMARY KEY (idfilho_medicamento), "  +
-                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
-                    "FOREIGN KEY (medicamento_id) REFERENCES medicamento (medicamento_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION, " +
+                    "FOREIGN KEY (medicamento_id) REFERENCES medicamento (medicamento_id) ON DELETE NO ACTION ON UPDATE NO ACTION " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;

@@ -19,7 +19,7 @@ public class    tableUsuario {
     private Integer id;
     private String nome;
     private String senha;
-    private Integer telefone;
+    private String email;
 
 
     public Integer getId() {
@@ -46,12 +46,12 @@ public class    tableUsuario {
         this.senha = senha;
     }
 
-    public Integer getTelefone() {
-        return telefone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setTelefone(Integer telefone) {
-        this.telefone = telefone;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     private static final String CREATE =
@@ -59,8 +59,8 @@ public class    tableUsuario {
                     "id INTEGER NOT NULL , " +
                     "nome TEXT NOT NULL, " +
                     "senha TEXT NOT NULL, " +
-                    "telefone INTEGER NOT NULL, " +
-                    "PRIMARY KEY (id), " +
+                    "email TEXT NOT NULL, " +
+                    "PRIMARY KEY (id) " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -224,7 +224,7 @@ public class    tableUsuario {
                 table.id = c.getInt(c.getColumnIndex("id"));
                 table.nome = c.getString(c.getColumnIndex("nome"));
                 table.senha = c.getString(c.getColumnIndex("senha"));
-                table.telefone = c.getInt(c.getColumnIndex("telefone"));
+                table.email = c.getString(c.getColumnIndex("email"));
                 list.add(table);
             }
         }
@@ -241,7 +241,7 @@ public class    tableUsuario {
                 this.id = c.getInt(c.getColumnIndex("id"));
                 this.nome = c.getString(c.getColumnIndex("nome"));
                 this.senha = c.getString(c.getColumnIndex("senha"));
-                this.telefone = c.getInt(c.getColumnIndex("telefone"));
+                this.email = c.getString(c.getColumnIndex("email"));
             }
         }
     }
@@ -249,7 +249,7 @@ public class    tableUsuario {
     public boolean selectUser(String user, String senha, SQLiteDatabase db)
     {
         boolean valid = false;
-        String query = "SELECT * FROM " + TABLE + " WHERE nome = " + id + " AND senha = " + senha;
+        String query = "SELECT * FROM " + TABLE + " WHERE nome = '" + user + "' AND senha = '" + senha + "'";
         Cursor c = db.rawQuery(query, null);
         if (c != null) {
             c.moveToFirst();
@@ -264,10 +264,9 @@ public class    tableUsuario {
     {
         ContentValues values = new ContentValues();
 
-        values.put("id", this.id);
         values.put("nome", this.nome);
         values.put("senha", this.senha);
-        values.put("telefone", this.telefone);
+        values.put("email", this.email);
 
         return  values;
     }

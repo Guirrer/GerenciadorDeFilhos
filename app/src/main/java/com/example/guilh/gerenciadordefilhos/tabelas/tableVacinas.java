@@ -81,7 +81,7 @@ public class tableVacinas {
                     "dose INTEGER NULL DEFAULT NULL, " +
                     "validade FLOAT NULL DEFAULT NULL, " +
                     "periodicidade FLOAT NULL DEFAULT NULL, " +
-                    "PRIMARY KEY (vacina_id), " +
+                    "PRIMARY KEY (id) " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;

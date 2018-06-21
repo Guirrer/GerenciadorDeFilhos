@@ -24,13 +24,6 @@ public class tableMedicamento {
     private String local_compra;
     private Integer qtd;
     private Float dosagem;
-    private SQLiteDatabase db;
-
-    public tableMedicamento(SQLiteDatabase db)
-    {
-        this.db = db;
-    }
-
     public Float getDosagem() {
         return dosagem;
     }
@@ -104,7 +97,7 @@ public class tableMedicamento {
                     "valor FLOAT NULL DEFAULT NULL, " +
                     "local_compra TEXT NULL DEFAULT NULL, " +
                     "qtd INTEGER  NOT NULL, " +
-                    "PRIMARY KEY (medicamento_id), " +
+                    "PRIMARY KEY (medicamento_id) " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;
@@ -135,7 +128,7 @@ public class tableMedicamento {
         }
     }
 
-    public List<tableMedicamento> selectList()
+    public List<tableMedicamento> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
@@ -264,7 +257,7 @@ public class tableMedicamento {
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableMedicamento table = new tableMedicamento(db);
+                tableMedicamento table = new tableMedicamento();
                 table.medicamento_id = c.getInt(c.getColumnIndex("medicamento_id"));
                 table.nome = c.getString(c.getColumnIndex("nome"));
                 table.laboratorio = c.getString(c.getColumnIndex("laboratorio"));
@@ -279,7 +272,7 @@ public class tableMedicamento {
         return list;
     }
 
-    public void select(int id)
+    public void select(int id, SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);

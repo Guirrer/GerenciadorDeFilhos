@@ -50,7 +50,7 @@ public class tableVacinacao {
                     "filho_id INTEGER NOT NULL , " +
                     "data_vacina DATE NOT NULL, " +
                     "PRIMARY KEY (vacinas_id, filho_id), " +
-                    "FOREIGN KEY (vacinas_id) REFERENCES vacinas (vacina_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (vacinas_id) REFERENCES vacinas (id) ON DELETE NO ACTION ON UPDATE NO ACTION, " +
                     "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
                     ")";
 

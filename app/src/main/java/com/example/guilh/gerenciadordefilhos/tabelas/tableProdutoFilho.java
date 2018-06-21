@@ -110,7 +110,7 @@ public class tableProdutoFilho{
                     "detalhe TEXT NULL DEFAULT NULL, " +
                     "qtd_compra INTEGER NULL DEFAULT NULL, " +
                     "PRIMARY KEY (produtoFilho_id), " +
-                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
+                    "FOREIGN KEY (filho_id) REFERENCES filho (id) ON DELETE NO ACTION ON UPDATE NO ACTION, " +
                     "FOREIGN KEY (produto_id) REFERENCES produto (produto_id) ON DELETE NO ACTION ON UPDATE NO ACTION" +
                     ")";
 

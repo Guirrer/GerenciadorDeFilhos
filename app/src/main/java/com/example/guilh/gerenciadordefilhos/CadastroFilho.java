@@ -31,6 +31,8 @@ public class CadastroFilho extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cadastro_filho);
+
         etNome = (EditText) findViewById(R.id.etNome);
         etDtaNasc = (EditText) findViewById(R.id.etDtaNasc);
         etAltura = (EditText) findViewById(R.id.etAltura);
@@ -63,7 +65,6 @@ public class CadastroFilho extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_cadastro_filho);
     }
 
 

@@ -24,6 +24,7 @@ public class CadastroVacinas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cadastro_vacinas);
 
         etNomeVacina = (EditText) findViewById(R.id.etNomeVacina);
         etDoseVacina = (EditText) findViewById(R.id.etDoseVacina);
@@ -49,6 +50,5 @@ public class CadastroVacinas extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_cadastro_vacinas);
     }
 }

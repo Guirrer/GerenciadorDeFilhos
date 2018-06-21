@@ -39,7 +39,7 @@ public class tableProdutos{
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
                     "produto_id INTEGER NOT NULL , " +
                     "nome TEXT NOT NULL, " +
-                    "PRIMARY KEY (produto_id), " +
+                    "PRIMARY KEY (produto_id) " +
                     ")";
 
     private static final String DROP = "DROP TABLE IF EXISTS " + TABLE;

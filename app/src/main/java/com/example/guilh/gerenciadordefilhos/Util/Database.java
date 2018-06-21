@@ -23,12 +23,14 @@ public class Database extends SQLiteOpenHelper {
     private tableUsuario usuario;
     private tableVacinacao vacinacao;
     private tableVacinas vacinas;
+    private tableMedicamento medicamento;
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         eventosFilhos = new tableEventoDosFilhos();
         eventos = new tableEventos();
         filho = new tableFilho();
+        medicamento = new tableMedicamento();
         filhoMedicamento = new tableFilhoMedicamento();
         medidas = new tableMedidas();
         produtoFilho = new tableProdutoFilho();
@@ -40,30 +42,32 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(eventosFilhos.create());
-        db.execSQL(eventos.create());
+        db.execSQL(usuario.create());
         db.execSQL(filho.create());
+        db.execSQL(eventos.create());
+        db.execSQL(produtos.create());
+        db.execSQL(vacinas.create());
+        db.execSQL(eventosFilhos.create());
+        db.execSQL(medicamento.create());
         db.execSQL(filhoMedicamento.create());
         db.execSQL(medidas.create());
         db.execSQL(produtoFilho.create());
-        db.execSQL(produtos.create());
-        db.execSQL(usuario.create());
         db.execSQL(vacinacao.create());
-        db.execSQL(vacinas.create());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(eventosFilhos.upgrade());
-        db.execSQL(eventos.upgrade());
+        db.execSQL(usuario.upgrade());
         db.execSQL(filho.upgrade());
+        db.execSQL(eventos.upgrade());
+        db.execSQL(produtos.upgrade());
+        db.execSQL(vacinas.upgrade());
+        db.execSQL(eventosFilhos.upgrade());
+        db.execSQL(medicamento.upgrade());
         db.execSQL(filhoMedicamento.upgrade());
         db.execSQL(medidas.upgrade());
         db.execSQL(produtoFilho.upgrade());
-        db.execSQL(produtos.upgrade());
-        db.execSQL(usuario.upgrade());
         db.execSQL(vacinacao.upgrade());
-        db.execSQL(vacinas.upgrade());
 
         onCreate(db);
     }

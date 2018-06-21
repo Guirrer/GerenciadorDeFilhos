@@ -42,6 +42,8 @@ public class TelaProduto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tela_produto);
+
         db = new Database(this.getApplicationContext());
         produto = new tableProdutos();
         nomeProduto = produto.selectList(db.getReadableDatabase());
@@ -107,7 +109,6 @@ public class TelaProduto extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_tela_produto);
 
     }
 }

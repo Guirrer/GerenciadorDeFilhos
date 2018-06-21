@@ -26,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
         etLogin = (EditText) findViewById(R.id.etLogin);
         etSenha = (EditText) findViewById(R.id.etSenha);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
         db = new Database(getApplicationContext());
         user = new tableUsuario();
 
@@ -58,7 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CadastroUsuario.class);
+                startActivity(intent);
+            }
+        });
 
-        setContentView(R.layout.activity_main);
     }
 }

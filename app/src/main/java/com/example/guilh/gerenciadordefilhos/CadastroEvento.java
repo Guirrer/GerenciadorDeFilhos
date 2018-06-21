@@ -22,6 +22,7 @@ public class CadastroEvento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cadastro_evento);
 
         etNomeEvento = (EditText) findViewById(R.id.etNomeEvento);
         etDtaEvento = (EditText) findViewById(R.id.etDtaEvento);
@@ -46,6 +47,5 @@ public class CadastroEvento extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_cadastro_evento);
     }
 }

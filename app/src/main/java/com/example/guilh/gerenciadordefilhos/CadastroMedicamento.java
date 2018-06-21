@@ -27,6 +27,7 @@ public class CadastroMedicamento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cadastro_medicamento);
 
         etNomeMedicamento = (EditText) findViewById(R.id.etNomeMedicamento);
         etFinalidade = (EditText) findViewById(R.id.etFinalidade);
@@ -58,6 +59,5 @@ public class CadastroMedicamento extends AppCompatActivity {
         });
 
 
-        setContentView(R.layout.activity_cadastro_medicamento);
     }
 }

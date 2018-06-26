@@ -1,30 +1,25 @@
 package com.example.guilh.gerenciadordefilhos;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.view.View;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class TelaPrincipal extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener  {
-    private Button btnCadastrarFilho;
+public class MenuActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_principal);
-
-
+        setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,18 +40,8 @@ public class TelaPrincipal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        btnCadastrarFilho = (Button) findViewById(R.id.btnCadastrarFilho);
-
-        btnCadastrarFilho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TelaPrincipal.this, CadastroFilho.class);
-                startActivity(intent);
-            }
-        });
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -95,22 +80,7 @@ public class TelaPrincipal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_evento) {
-            Intent intent = new Intent(TelaPrincipal.this, TelaEvento.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_medicamento) {
-            Intent intent = new Intent(TelaPrincipal.this, TelaMedicamento.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_produto) {
-            Intent intent = new Intent(TelaPrincipal.this, TelaProduto.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_vacinacao) {
-            Intent intent = new Intent(TelaPrincipal.this, TelaVacinacao.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_vacinas) {
-            Intent intent = new Intent(TelaPrincipal.this, TelaVacina.class);
-            startActivity(intent);
-        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -2,6 +2,7 @@ package com.example.guilh.gerenciadordefilhos;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,12 +30,18 @@ public class CadastroFilho extends AppCompatActivity {
 
     private tableFilho tableFilho;
     private tableMedidas tableMedidas;
+    private tableUsuario usuario;
     private  Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_filho);
+
+        Intent intent = getIntent();
+
+        Bundle bundle = intent.getExtras();
+        usuario = (tableUsuario) bundle.getSerializable("usuario");
 
         etNome = (EditText) findViewById(R.id.etNome);
         etDtaNasc = (EditText) findViewById(R.id.etDtaNasc);
@@ -58,8 +65,9 @@ public class CadastroFilho extends AppCompatActivity {
                 tableFilho.setNome(etNome.getText().toString());
                 tableFilho.setData_nasc(etDtaNasc.getText().toString());
                 tableFilho.setSexo(rbFem.isChecked() ? "Feminino" : "Masculino");
-                tableMedidas.setAltura(Float.parseFloat(etAltura.getText().toString()));
-                tableMedidas.setPeso(Float.parseFloat(etPeso.getText().toString()));
+                tableFilho.setUsuario_id(usuario.getId());
+                tableMedidas.setAltura(Float.parseFloat(etAltura.getText().toString().replace(",",".")));
+                tableMedidas.setPeso(Float.parseFloat(etPeso.getText().toString().replace(",",".")));
                 tableMedidas.setTam_pe(Integer.parseInt(edtTamPe.getText().toString()));
                 tableFilho.insert(db.getReadableDatabase());
                 tableFilho.selectMaxId(db.getReadableDatabase());

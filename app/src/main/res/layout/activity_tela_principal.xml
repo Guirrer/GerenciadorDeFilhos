@@ -38,6 +38,21 @@
                     android:text="Menu Principal"
                     android:layout_gravity="center"/>
 
+
+                <TextView
+                    android:layout_marginTop="15px"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lista de Filhos"
+                    android:layout_gravity="center"/>
+
+                <ListView
+                    android:id="@+id/lvFilho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></ListView>
+
+
                 <Button
                     android:id="@+id/btnCadastrarFilho"
                     android:layout_width="wrap_content"
@@ -49,14 +64,7 @@
         </ScrollView>
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_menu"
-        app:menu="@menu/activity_menu_drawer" />
+
 
 
 

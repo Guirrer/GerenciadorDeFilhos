@@ -45,8 +45,8 @@ public class CadastroVacinas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tableVacinas.setNome_vacina(etNomeVacina.getText().toString());
-                tableVacinas.setValidade(Float.parseFloat(etValidade.getText().toString()));
-                tableVacinas.setPeriodicidade(Float.parseFloat(etPeriodiciadade.getText().toString()));
+                tableVacinas.setValidade(Float.parseFloat(etValidade.getText().toString().replace(",",".")));
+                tableVacinas.setPeriodicidade(Float.parseFloat(etPeriodiciadade.getText().toString().replace(",",".")));
                 tableVacinas.setIdade_minima(Integer.parseInt(etIdadeMinima.getText().toString()));
                 tableVacinas.setDose(Integer.parseInt(etDoseVacina.getText().toString()));
                 tableVacinas.insert(db.getReadableDatabase());

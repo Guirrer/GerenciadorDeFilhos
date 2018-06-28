@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity{
     private EditText etSenha;
     private Button btnLogin;
     private Button btnCadastrar;
-    private tableUsuario user;
+    private tableUsuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +43,19 @@ public class MainActivity extends AppCompatActivity{
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
         db = new Database(getApplicationContext());
-        user = new tableUsuario();
+        usuario = new tableUsuario();
 
         btnLogin.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v) {
 
-                if(user.selectUser(etLogin.getText().toString(), etSenha.getText().toString(), db.getReadableDatabase()))
+                if(usuario.selectUser(etLogin.getText().toString(), etSenha.getText().toString(), db.getReadableDatabase()))
                 {
                     Intent intent = new Intent(MainActivity.this, TelaPrincipal.class);
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("usuario", usuario);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 else

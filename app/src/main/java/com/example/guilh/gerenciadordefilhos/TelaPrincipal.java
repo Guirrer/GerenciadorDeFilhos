@@ -13,17 +13,47 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import com.example.guilh.gerenciadordefilhos.Util.Database;
+import com.example.guilh.gerenciadordefilhos.tabelas.tableFilho;
+import com.example.guilh.gerenciadordefilhos.tabelas.tableUsuario;
+
+import java.util.List;
 
 public class TelaPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
+
     private Button btnCadastrarFilho;
+    private tableUsuario usuario;
+    private ListView lvFilho;
+
+    public TelaPrincipal(tableUsuario usuario)
+    {
+        this.usuario = usuario;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_principal);
 
+        Intent intent = getIntent();
+
+        Bundle bundle = intent.getExtras();
+        usuario = (tableUsuario) bundle.getSerializable("user");
+
+        tableFilho tableFilho = new tableFilho();
+
+        this.lvFilho = (ListView) findViewById(R.id.lvFilho);
+
+        Database db = new Database(this.getApplicationContext());
+
+        ArrayAdapter<tableFilho> adapter = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_list_item_1, tableFilho.selectList(db.getReadableDatabase(), usuario.getId().toString()));
+
+        lvFilho.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +83,10 @@ public class TelaPrincipal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TelaPrincipal.this, CadastroFilho.class);
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable("usuario", usuario);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

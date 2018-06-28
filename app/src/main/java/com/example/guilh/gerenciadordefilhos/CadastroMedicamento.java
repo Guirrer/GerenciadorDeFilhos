@@ -52,10 +52,10 @@ public class CadastroMedicamento extends AppCompatActivity {
                 tableMedicamento.setNome(etNomeMedicamento.getText().toString());
                 tableMedicamento.setFinalidade(etFinalidade.getText().toString());
                 tableMedicamento.setLaboratorio(etLaboratorio.getText().toString());
-                tableMedicamento.setValor(Float.parseFloat(etValor.getText().toString()));
+                tableMedicamento.setValor(Float.parseFloat(etValor.getText().toString().replace(",",".")));
                 tableMedicamento.setLocal_compra(etLocalCompra.getText().toString());
                 tableMedicamento.setQtd(Integer.parseInt(etQuantidade.getText().toString()));
-                tableMedicamento.setDosagem(Float.parseFloat(etDosagem.getText().toString()));
+                tableMedicamento.setDosagem(Float.parseFloat(etDosagem.getText().toString().replace(",",".")));
                 tableMedicamento.insert(db.getReadableDatabase());
                 tableMedicamento.selectMaxId(db.getReadableDatabase());
                 if(tableMedicamento.insert(db.getReadableDatabase()) != -1)

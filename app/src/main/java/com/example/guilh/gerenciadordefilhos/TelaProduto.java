@@ -48,7 +48,7 @@ public class TelaProduto extends AppCompatActivity {
         produto = new tableProdutos();
         nomeProduto = produto.selectList(db.getReadableDatabase());
         filho = new tableFilho();
-        nomeFilho = filho.selectList(db.getReadableDatabase());
+        //nomeFilho = filho.select();
         spNomeFilho =  (Spinner) findViewById(R.id.spNomeFilho);
         spNomeProduto =  (Spinner) findViewById(R.id.spNomeProduto);
         etDetalhe =  (EditText) findViewById(R.id.etDetalhe);
@@ -101,7 +101,7 @@ public class TelaProduto extends AppCompatActivity {
                 TableProdutoFilho.setDetalhe(etDetalhe.getText().toString());
                 TableProdutoFilho.setQtd_compra(Integer.parseInt(etQuantidade.getText().toString()));
                 TableProdutoFilho.setQtd_pacote(Integer.parseInt(etQuantidadePacotes.getText().toString()));
-                TableProdutoFilho.setPreco(Float.parseFloat(etPreco.getText().toString()));
+                TableProdutoFilho.setPreco(Float.parseFloat(etPreco.getText().toString().replace(",",".")));
                 TableProdutoFilho.setData_compra(etData.getText().toString());
                 TableProdutoFilho.setLoja_compra(etLocalCompra.getText().toString());
                 TableProdutoFilho.insert(db.getReadableDatabase());

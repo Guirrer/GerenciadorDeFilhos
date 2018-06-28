@@ -108,9 +108,9 @@ public class tableFilho {
         }
     }
 
-    public List<tableFilho> selectList(SQLiteDatabase db)
+    public List<tableFilho> selectList(SQLiteDatabase db, String user_id)
     {
-        String query = "SELECT * FROM " + TABLE;
+        String query = "SELECT * FROM " + TABLE + " WHERE USER_ID = " + user_id;
         Cursor c = db.rawQuery(query, null);
         List<tableFilho> list = new List<tableFilho>() {
             @Override

@@ -8,12 +8,13 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class    tableUsuario {
+public class tableUsuario implements Serializable {
     private static  final String TABLE = "usuario";
 
     private Integer id;
@@ -255,6 +256,10 @@ public class    tableUsuario {
             c.moveToFirst();
             if (c.getCount() > 0) {
                 valid = true;
+                this.id = c.getInt(c.getColumnIndex("id"));
+                this.nome = c.getString(c.getColumnIndex("nome"));
+                this.senha = c.getString(c.getColumnIndex("senha"));
+                this.email = c.getString(c.getColumnIndex("email"));
             }
         }
         return  valid;

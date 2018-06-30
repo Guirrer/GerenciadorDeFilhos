@@ -144,9 +144,11 @@ public class TelaPrincipal extends AppCompatActivity
         } else if (id == R.id.nav_vacinas) {
             Intent intent = new Intent(TelaPrincipal.this, TelaVacina.class);
             startActivity(intent);
+        } else if (id == R.id.nav_relatorio) {
+            Intent intent = new Intent(TelaPrincipal.this, TelaRelatorio.class);
+            startActivity(intent);
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

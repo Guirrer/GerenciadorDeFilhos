@@ -38,8 +38,7 @@
                     android:ems="10"
                     android:layout_gravity="center"
                     android:inputType="textPersonName"
-                    android:textAlignment="center"
-                    />
+                    android:textAlignment="center"/>
 
                 <TextView
                     android:layout_marginTop="15px"
@@ -54,7 +53,8 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:ems="10"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:textAlignment="center"/>
 
                 <TextView
                     android:layout_marginTop="15px"
@@ -70,15 +70,14 @@
                     android:ems="10"
                     android:layout_gravity="center"
                     android:inputType="text"
-                    android:textAlignment="center"
-                    />
+                    android:textAlignment="center"/>
+
                 <TextView
                     android:layout_marginTop="15px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Observações"
-                    />
+                    android:text="Observações" />
 
                 <EditText
                     android:id="@+id/etObservacoes"

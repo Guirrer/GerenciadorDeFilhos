@@ -38,8 +38,7 @@
                 android:ems="10"
                 android:layout_gravity="center"
                 android:inputType="textPersonName"
-                android:textAlignment="center"
-                />
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_marginTop="15px"
@@ -55,7 +54,8 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textAlignment="center"/>
 
             <TextView
                 android:layout_marginTop="15px"
@@ -97,8 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="Medidas"
                 android:textSize="25dp"
-                android:layout_gravity="center"
-                />
+                android:layout_gravity="center" />
 
             <TextView
                 android:layout_marginTop="15px"
@@ -115,7 +114,8 @@
                 android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
 
             <TextView
                 android:layout_marginTop="15px"
@@ -131,7 +131,8 @@
                 android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
 
             <TextView
                 android:layout_marginTop="15px"
@@ -146,7 +147,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
 
             <Button
                 android:id="@+id/btnCadastrar"
@@ -156,6 +158,6 @@
                 android:layout_gravity="center"/>
 
         </LinearLayout>
-</ScrollView>
+        </ScrollView>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

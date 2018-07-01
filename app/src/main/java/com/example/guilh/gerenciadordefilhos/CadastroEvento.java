@@ -46,6 +46,7 @@ public class CadastroEvento extends AppCompatActivity {
                 tableEventos.setLocal_evento(etLocalEvento.getText().toString());
                 tableEventos.setDescricao(etObservacoes.getText().toString());
                 tableEventos.insert(db.getReadableDatabase());
+                tableEventos.setEventos_id(tableEventos.getEventos_id());
                 tableEventos.selectMaxId(db.getReadableDatabase());
                 if(tableEventos.insert(db.getReadableDatabase()) != -1)
                 {

@@ -35,7 +35,8 @@
                 android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="text"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
 
             <TextView
                 android:layout_marginTop="15px"
@@ -50,7 +51,8 @@
                 android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="text"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
 
             <TextView
                 android:layout_marginTop="15px"
@@ -80,7 +82,8 @@
                 android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="text"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
             <TextView
                 android:layout_marginTop="15px"
                 android:layout_width="wrap_content"
@@ -94,7 +97,8 @@
                 android:layout_height="50dp"
                 android:ems="10"
                 android:inputType="text"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"/>
             <Button
                 android:id="@+id/btnCadastrarVacina"
                 android:layout_width="wrap_content"

@@ -49,6 +49,7 @@ public class CadastroVacinas extends AppCompatActivity {
                 tableVacinas.setPeriodicidade(Float.parseFloat(etPeriodiciadade.getText().toString().replace(",",".")));
                 tableVacinas.setIdade_minima(Integer.parseInt(etIdadeMinima.getText().toString()));
                 tableVacinas.setDose(Integer.parseInt(etDoseVacina.getText().toString()));
+                tableVacinas.setVacina_id(tableVacinas.getVacina_id());
                 tableVacinas.insert(db.getReadableDatabase());
                 if(tableVacinas.insert(db.getReadableDatabase()) != -1)
                 {

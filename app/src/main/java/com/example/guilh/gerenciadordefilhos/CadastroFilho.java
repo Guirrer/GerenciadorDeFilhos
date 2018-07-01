@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -73,12 +74,11 @@ public class CadastroFilho extends AppCompatActivity {
                 tableMedidas.setTam_pe(Integer.parseInt(edtTamPe.getText().toString()));
                 Date data = new Date();
                 tableMedidas.setData_dado(data.toString());
-                tableFilho.insert(db.getReadableDatabase());
-                tableFilho.selectMaxId(db.getReadableDatabase());
-                tableMedidas.setFilho_id(tableFilho.getId());
-                tableMedidas.insert(db.getReadableDatabase());
                 if(tableFilho.insert(db.getReadableDatabase()) != -1)
                 {
+                    tableFilho.selectMaxId(db.getReadableDatabase());
+                    tableMedidas.setFilho_id(tableFilho.getId());
+                    tableMedidas.insert(db.getReadableDatabase());
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroFilho.this).create();
                     alertDialog.setTitle("ALERTA");
                     alertDialog.setMessage("Filho(a) cadastrado com sucesso!");

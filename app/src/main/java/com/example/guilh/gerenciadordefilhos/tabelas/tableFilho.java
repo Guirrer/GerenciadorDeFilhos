@@ -11,6 +11,7 @@ import android.widget.CursorAdapter;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -115,132 +116,11 @@ public class tableFilho {
     {
         String query = "SELECT * FROM " + TABLE + " WHERE usuario_id = " + user_id;
         Cursor c = db.rawQuery(query, null);
-        List<tableFilho> list = new List<tableFilho>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableFilho> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableFilho tableFilho) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableFilho> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableFilho> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableFilho get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableFilho set(int index, tableFilho element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableFilho element) {
-
-            }
-
-            @Override
-            public tableFilho remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableFilho> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableFilho> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableFilho> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableFilho> list = new ArrayList<tableFilho>();
         if (c != null) {
-            if (c.getCount() > 0) {
-                c.moveToFirst();
-                for(int i = 0;i < c.getCount(); i++ ) {
+            if (c.getCount() > 0 && c.moveToFirst()) {
+                //for(int i = 0;i < c.getCount(); i++ ) {
+                do{
                     tableFilho table = new tableFilho();
                     table.id = c.getInt(c.getColumnIndex("id"));
                     table.usuario_id = c.getInt(c.getColumnIndex("usuario_id"));
@@ -248,8 +128,8 @@ public class tableFilho {
                     table.data_nasc = c.getString(c.getColumnIndex("data_nasc"));
                     table.sexo = c.getString(c.getColumnIndex("sexo"));
                     list.add(table);
-                    c.moveToNext();
-                }
+
+                } while(c.moveToNext());
             }
         }
         return list;

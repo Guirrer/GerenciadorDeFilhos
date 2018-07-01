@@ -49,8 +49,9 @@
 
                 <ListView
                     android:id="@+id/lvFilho"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></ListView>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:dividerHeight="1dp"/>
 
 
                 <Button
@@ -63,7 +64,6 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -72,6 +72,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_menu"
         app:menu="@menu/activity_menu_drawer" />
+
 
 
 

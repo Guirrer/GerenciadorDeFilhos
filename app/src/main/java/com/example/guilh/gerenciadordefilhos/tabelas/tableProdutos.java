@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -69,135 +70,16 @@ public class tableProdutos{
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
-        List<tableProdutos> list = new List<tableProdutos>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableProdutos> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableProdutos tableProdutos) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableProdutos> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableProdutos> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableProdutos get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableProdutos set(int index, tableProdutos element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableProdutos element) {
-
-            }
-
-            @Override
-            public tableProdutos remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableProdutos> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableProdutos> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableProdutos> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableProdutos> list = new ArrayList<tableProdutos>();
         if (c != null) {
-            c.moveToFirst();
             if (c.getCount() > 0) {
-                tableProdutos table = new tableProdutos();
-                table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
-                table.nome = c.getString(c.getColumnIndex("nome"));
-                list.add(table);
+                for(int i = 0; i < c.getCount(); i++) {
+                    tableProdutos table = new tableProdutos();
+                    table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
+                    table.nome = c.getString(c.getColumnIndex("nome"));
+                    list.add(table);
+                    c.moveToNext();
+                }
             }
         }
         return list;

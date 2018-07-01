@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -59,7 +58,7 @@ public class TelaProduto extends AppCompatActivity {
         produto = new tableProdutos();
         nomeProduto = produto.selectList(db.getReadableDatabase());
         filho = new tableFilho();
-        //nomeFilho = new CursorAdapter(filho.selectList(db.getReadableDatabase(), usuario.getId().toString()));
+        nomeFilho = filho.selectList(db.getReadableDatabase(), usuario.getId().toString());
         spNomeFilho =  (Spinner) findViewById(R.id.spNomeFilho);
         spNomeProduto =  (Spinner) findViewById(R.id.spNomeProduto);
         etDetalhe =  (EditText) findViewById(R.id.etDetalhe);
@@ -70,8 +69,10 @@ public class TelaProduto extends AppCompatActivity {
         etLocalCompra =  (EditText) findViewById(R.id.etLocalCompra);
         btnCadastrarProduto =  (Button) findViewById(R.id.btnCadastrarProduto);
 
-        ArrayAdapter<tableProdutos> arrayAdapterProduto = new ArrayAdapter<tableProdutos>(this, android.R.layout.simple_spinner_dropdown_item, nomeProduto);
-        ArrayAdapter<tableFilho> arrayAdapterFilho = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_spinner_dropdown_item, nomeFilho);
+        ArrayAdapter<tableProdutos> arrayAdapterProduto = new ArrayAdapter<tableProdutos>(this, android.R.layout.simple_spinner_item, nomeProduto);
+        ArrayAdapter<tableFilho> arrayAdapterFilho = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_spinner_item, nomeFilho);
+        arrayAdapterFilho.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapterProduto.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spNomeProduto.setAdapter(arrayAdapterProduto);
         spNomeFilho.setAdapter(arrayAdapterFilho);

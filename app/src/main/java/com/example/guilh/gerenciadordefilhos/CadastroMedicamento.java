@@ -56,8 +56,7 @@ public class CadastroMedicamento extends AppCompatActivity {
                 tableMedicamento.setLocal_compra(etLocalCompra.getText().toString());
                 tableMedicamento.setQtd(etQuantidade.getText().toString());
                 tableMedicamento.setDosagem(etDosagem.getText().toString());
-                tableMedicamento.setMedicamento_id(tableMedicamento.getMedicamento_id());
-                tableMedicamento.insert(db.getReadableDatabase());
+                //tableMedicamento.setMedicamento_id(tableMedicamento.getMedicamento_id());
                 if(tableMedicamento.insert(db.getReadableDatabase()) != -1)
                 {
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroMedicamento.this).create();

@@ -22,13 +22,13 @@ public class tableMedicamento {
     private String finalidade;
     private Float valor;
     private String local_compra;
-    private Integer qtd;
-    private Float dosagem;
-    public Float getDosagem() {
+    private String qtd;
+    private String dosagem;
+    public String getDosagem() {
         return dosagem;
     }
 
-    public void setDosagem(Float dosagem) {
+    public void setDosagem(String dosagem) {
         this.dosagem = dosagem;
     }
 
@@ -80,11 +80,11 @@ public class tableMedicamento {
         this.local_compra = local_compra;
     }
 
-    public Integer getQtd() {
+    public String getQtd() {
         return qtd;
     }
 
-    public void setQtd(Integer qtd) {
+    public void setQtd(String qtd) {
         this.qtd = qtd;
     }
 
@@ -264,8 +264,8 @@ public class tableMedicamento {
                 table.finalidade = c.getString(c.getColumnIndex("finalidade"));
                 table.valor = c.getFloat(c.getColumnIndex("valor"));
                 table.local_compra = c.getString(c.getColumnIndex("local_compra"));
-                table.qtd = c.getInt(c.getColumnIndex("qtd"));
-                table.dosagem = c.getFloat(c.getColumnIndex("dosagem"));
+                table.qtd = c.getString(c.getColumnIndex("qtd"));
+                table.dosagem = c.getString(c.getColumnIndex("dosagem"));
                 list.add(table);
             }
         }
@@ -284,8 +284,8 @@ public class tableMedicamento {
                 this.laboratorio = c.getString(c.getColumnIndex("laboratorio"));
                 this.finalidade = c.getString(c.getColumnIndex("finalidade"));
                 this.valor = c.getFloat(c.getColumnIndex("valor"));
-                this.qtd = c.getInt(c.getColumnIndex("qtd"));
-                this.dosagem = c.getFloat(c.getColumnIndex("dosagem"));
+                this.qtd = c.getString(c.getColumnIndex("qtd"));
+                this.dosagem = c.getString(c.getColumnIndex("dosagem"));
             }
         }
     }

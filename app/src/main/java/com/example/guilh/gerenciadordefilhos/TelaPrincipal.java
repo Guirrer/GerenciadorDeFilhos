@@ -34,10 +34,6 @@ public class TelaPrincipal extends AppCompatActivity
     private tableUsuario usuario;
     private ListView lvFilho;
 
-    public TelaPrincipal()
-    {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

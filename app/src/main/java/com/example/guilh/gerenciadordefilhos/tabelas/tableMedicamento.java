@@ -96,6 +96,7 @@ public class tableMedicamento {
                     "finalidade TEXT NOT NULL, " +
                     "valor FLOAT NULL DEFAULT NULL, " +
                     "local_compra TEXT NULL DEFAULT NULL, " +
+                    "dosagem TEXT NULL DEFAULT NULL, " +
                     "qtd INTEGER  NOT NULL, " +
                     "PRIMARY KEY (medicamento_id) " +
                     ")";

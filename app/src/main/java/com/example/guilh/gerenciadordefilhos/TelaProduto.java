@@ -1,11 +1,13 @@
 package com.example.guilh.gerenciadordefilhos;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableFilho;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableProdutoFilho;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableProdutos;
+import com.example.guilh.gerenciadordefilhos.tabelas.tableUsuario;
 
 import java.util.ArrayList;
 
@@ -34,7 +37,8 @@ public class TelaProduto extends AppCompatActivity {
     private EditText etData;
     private EditText etLocalCompra;
     private Button btnCadastrarProduto;
-    Database db;
+    private tableUsuario usuario;
+    private Database db;
 
     private List<tableProdutos> nomeProduto;
     private List<tableFilho> nomeFilho;
@@ -44,11 +48,18 @@ public class TelaProduto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_produto);
 
+        Intent intent = getIntent();
+
+        Bundle bundle = intent.getExtras();
+        this.usuario = new tableUsuario();
+        usuario = (tableUsuario) bundle.getSerializable("usuario");
+
+
         db = new Database(this.getApplicationContext());
         produto = new tableProdutos();
         nomeProduto = produto.selectList(db.getReadableDatabase());
         filho = new tableFilho();
-        //nomeFilho = filho.select();
+        //nomeFilho = new CursorAdapter(filho.selectList(db.getReadableDatabase(), usuario.getId().toString()));
         spNomeFilho =  (Spinner) findViewById(R.id.spNomeFilho);
         spNomeProduto =  (Spinner) findViewById(R.id.spNomeProduto);
         etDetalhe =  (EditText) findViewById(R.id.etDetalhe);

@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.*;
 
+import java.util.Date;
+
 public class CadastroFilho extends AppCompatActivity {
 
     private EditText etNome;
@@ -69,6 +71,8 @@ public class CadastroFilho extends AppCompatActivity {
                 tableMedidas.setAltura(Float.parseFloat(etAltura.getText().toString().replace(",",".")));
                 tableMedidas.setPeso(Float.parseFloat(etPeso.getText().toString().replace(",",".")));
                 tableMedidas.setTam_pe(Integer.parseInt(edtTamPe.getText().toString()));
+                Date data = new Date();
+                tableMedidas.setData_dado(data.toString());
                 tableFilho.insert(db.getReadableDatabase());
                 tableFilho.selectMaxId(db.getReadableDatabase());
                 tableMedidas.setFilho_id(tableFilho.getId());

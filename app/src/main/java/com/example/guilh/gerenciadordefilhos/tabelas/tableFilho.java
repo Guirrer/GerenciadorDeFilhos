@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
@@ -110,7 +113,7 @@ public class tableFilho {
 
     public List<tableFilho> selectList(SQLiteDatabase db, String user_id)
     {
-        String query = "SELECT * FROM " + TABLE + " WHERE USER_ID = " + user_id;
+        String query = "SELECT * FROM " + TABLE + " WHERE usuario_id = " + user_id;
         Cursor c = db.rawQuery(query, null);
         List<tableFilho> list = new List<tableFilho>() {
             @Override
@@ -235,15 +238,18 @@ public class tableFilho {
             }
         };
         if (c != null) {
-            c.moveToFirst();
             if (c.getCount() > 0) {
-                tableFilho table = new tableFilho();
-                table.id = c.getInt(c.getColumnIndex("id"));
-                table.usuario_id = c.getInt(c.getColumnIndex("usuario_id"));
-                table.nome = c.getString(c.getColumnIndex("nome"));
-                table.data_nasc = c.getString(c.getColumnIndex("data_nasc"));
-                table.sexo = c.getString(c.getColumnIndex("sexo"));
-                list.add(table);
+                c.moveToFirst();
+                for(int i = 0;i < c.getCount(); i++ ) {
+                    tableFilho table = new tableFilho();
+                    table.id = c.getInt(c.getColumnIndex("id"));
+                    table.usuario_id = c.getInt(c.getColumnIndex("usuario_id"));
+                    table.nome = c.getString(c.getColumnIndex("nome"));
+                    table.data_nasc = c.getString(c.getColumnIndex("data_nasc"));
+                    table.sexo = c.getString(c.getColumnIndex("sexo"));
+                    list.add(table);
+                    c.moveToNext();
+                }
             }
         }
         return list;

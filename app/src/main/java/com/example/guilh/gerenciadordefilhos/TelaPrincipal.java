@@ -1,6 +1,8 @@
 package com.example.guilh.gerenciadordefilhos;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -13,8 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
@@ -30,9 +34,8 @@ public class TelaPrincipal extends AppCompatActivity
     private tableUsuario usuario;
     private ListView lvFilho;
 
-    public TelaPrincipal(tableUsuario usuario)
+    public TelaPrincipal()
     {
-        this.usuario = usuario;
     }
 
     @Override
@@ -43,15 +46,21 @@ public class TelaPrincipal extends AppCompatActivity
         Intent intent = getIntent();
 
         Bundle bundle = intent.getExtras();
-        usuario = (tableUsuario) bundle.getSerializable("user");
+        this.usuario = new tableUsuario();
+        usuario = (tableUsuario) bundle.getSerializable("usuario");
 
-        tableFilho tableFilho = new tableFilho();
+        tableFilho filho = new tableFilho();
 
         this.lvFilho = (ListView) findViewById(R.id.lvFilho);
 
+
+
         Database db = new Database(this.getApplicationContext());
 
-        ArrayAdapter<tableFilho> adapter = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_list_item_1, tableFilho.selectList(db.getReadableDatabase(), usuario.getId().toString()));
+        List<tableFilho> listaFilho = filho.selectList(db.getReadableDatabase(), usuario.getId().toString());
+
+        ArrayAdapter<tableFilho> adapter = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_list_item_1, listaFilho);
+
 
         lvFilho.setAdapter(adapter);
 
@@ -137,6 +146,10 @@ public class TelaPrincipal extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_produto) {
             Intent intent = new Intent(TelaPrincipal.this, TelaProduto.class);
+            Bundle bundle = new Bundle();
+
+            bundle.putSerializable("usuario", usuario);
+            intent.putExtras(bundle);
             startActivity(intent);
         } else if (id == R.id.nav_vacinacao) {
             Intent intent = new Intent(TelaPrincipal.this, TelaVacinacao.class);

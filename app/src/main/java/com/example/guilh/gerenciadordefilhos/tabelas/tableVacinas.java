@@ -18,10 +18,10 @@ public class tableVacinas {
 
     private Integer id;
     private String nome_vacina;
-    private Integer idade_minima;
+    private String idade_minima;
     private Integer dose;
-    private Float validade;
-    private Float periodicidade;
+    private String validade;
+    private String periodicidade;
 
 
 
@@ -41,11 +41,11 @@ public class tableVacinas {
         this.nome_vacina = nome_vacina;
     }
 
-    public Integer getIdade_minima() {
+    public String getIdade_minima() {
         return idade_minima;
     }
 
-    public void setIdade_minima(Integer idade_minima) {
+    public void setIdade_minima(String idade_minima) {
         this.idade_minima = idade_minima;
     }
 
@@ -57,19 +57,19 @@ public class tableVacinas {
         this.dose = dose;
     }
 
-    public Float getValidade() {
+    public String getValidade() {
         return validade;
     }
 
-    public void setValidade(Float validade) {
+    public void setValidade(String validade) {
         this.validade = validade;
     }
 
-    public Float getPeriodicidade() {
+    public String getPeriodicidade() {
         return periodicidade;
     }
 
-    public void setPeriodicidade(Float periodicidade) {
+    public void setPeriodicidade(String periodicidade) {
         this.periodicidade = periodicidade;
     }
 
@@ -99,10 +99,10 @@ public class tableVacinas {
             if (c.getCount() > 0) {
                 this.id = c.getInt(c.getColumnIndex("id"));
                 this.nome_vacina = c.getString(c.getColumnIndex("nome_vacina"));
-                this.idade_minima = c.getInt(c.getColumnIndex("idade_minima"));
+                this.idade_minima = c.getString(c.getColumnIndex("idade_minima"));
                 this.dose = c.getInt(c.getColumnIndex("dose"));
-                this.validade = c.getFloat(c.getColumnIndex("validade"));
-                this.periodicidade = c.getFloat(c.getColumnIndex("periodicidade"));
+                this.validade = c.getString(c.getColumnIndex("validade"));
+                this.periodicidade = c.getString(c.getColumnIndex("periodicidade"));
             }
         }
     }
@@ -239,10 +239,10 @@ public class tableVacinas {
                 tableVacinas table = new tableVacinas();
                 table.id = c.getInt(c.getColumnIndex("id"));
                 table.nome_vacina = c.getString(c.getColumnIndex("nome_vacina"));
-                table.idade_minima = c.getInt(c.getColumnIndex("idade_minima"));
+                table.idade_minima = c.getString(c.getColumnIndex("idade_minima"));
                 table.dose = c.getInt(c.getColumnIndex("dose"));
-                table.validade = c.getFloat(c.getColumnIndex("validade"));
-                table.periodicidade = c.getFloat(c.getColumnIndex("periodicidade"));
+                table.validade = c.getString(c.getColumnIndex("validade"));
+                table.periodicidade = c.getString(c.getColumnIndex("periodicidade"));
                 list.add(table);
             }
         }

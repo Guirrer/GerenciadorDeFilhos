@@ -47,12 +47,11 @@ public class CadastroEvento extends AppCompatActivity {
                 tableEventos.setDescricao(etObservacoes.getText().toString());
                 tableEventos.insert(db.getReadableDatabase());
                 tableEventos.setEventos_id(tableEventos.getEventos_id());
-                tableEventos.selectMaxId(db.getReadableDatabase());
                 if(tableEventos.insert(db.getReadableDatabase()) != -1)
                 {
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroEvento.this).create();
                     alertDialog.setTitle("ALERTA");
-                    alertDialog.setMessage("Usuário cadastrado com sucesso.");
+                    alertDialog.setMessage("Evento cadastrado com sucesso.");
 
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {

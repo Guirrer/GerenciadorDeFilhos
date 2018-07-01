@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableUsuario;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity{
 
     private Database db;
@@ -36,7 +38,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         etLogin = (EditText) findViewById(R.id.etLogin);
         etSenha = (EditText) findViewById(R.id.etSenha);

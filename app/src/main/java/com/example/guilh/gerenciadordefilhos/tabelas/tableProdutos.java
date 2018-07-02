@@ -49,6 +49,11 @@ public class tableProdutos{
 
     public String upgrade() { return DROP; }
 
+    public long insert(SQLiteDatabase db)
+    {
+        return db.insert(TABLE, null, retornaValues());
+    }
+
     public int update(SQLiteDatabase db)
     {
         return db.update(TABLE, retornaValues(), "produto_id = ?", new String[]{ this.produto_id.toString() });

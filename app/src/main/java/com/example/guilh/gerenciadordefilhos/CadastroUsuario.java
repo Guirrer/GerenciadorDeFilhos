@@ -48,12 +48,13 @@ public class CadastroUsuario extends AppCompatActivity {
                 tableUsuario.setNome(etUsuario.getText().toString());
                 tableUsuario.setSenha(etSenha.getText().toString());
                 tableUsuario.setEmail(etEmail.getText().toString());
+
                 if(tableUsuario.insert(db.getReadableDatabase()) != -1)
                 {
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroUsuario.this).create();
                     alertDialog.setTitle("ALERTA");
                     alertDialog.setMessage("Usuário cadastrado com sucesso.");
-
+                    limparCampos();
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
@@ -69,5 +70,14 @@ public class CadastroUsuario extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void limparCampos()
+    {
+        etUsuario.setText("");
+        etSenha.setText("");
+        etRepetirSenha.setText("");
+        etEmail.setText("");
+        etRepetirEmail.setText("");
     }
 }

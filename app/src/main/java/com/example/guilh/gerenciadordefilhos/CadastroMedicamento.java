@@ -62,7 +62,7 @@ public class CadastroMedicamento extends AppCompatActivity {
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroMedicamento.this).create();
                     alertDialog.setTitle("ALERTA");
                     alertDialog.setMessage("Medicamento cadastrado com sucesso.");
-
+                    limpaCampos();
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
@@ -76,5 +76,16 @@ public class CadastroMedicamento extends AppCompatActivity {
         });
 
 
+    }
+
+    private void limpaCampos()
+    {
+        etNomeMedicamento.setText("");
+        etFinalidade.setText("");
+        etLaboratorio.setText("");
+        etValor.setText("");
+        etLocalCompra.setText("");
+        etQuantidade.setText("");
+        etDosagem.setText("");
     }
 }

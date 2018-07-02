@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -111,131 +112,11 @@ public class tableVacinas {
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);
-        List<tableVacinas> list = new List<tableVacinas>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableVacinas> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableVacinas tableVacinas) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableVacinas> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableVacinas> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableVacinas get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableVacinas set(int index, tableVacinas element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableVacinas element) {
-
-            }
-
-            @Override
-            public tableVacinas remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableVacinas> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableVacinas> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableVacinas> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableVacinas> list = new ArrayList<tableVacinas>();
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
+                do{
                 tableVacinas table = new tableVacinas();
                 table.id = c.getInt(c.getColumnIndex("id"));
                 table.nome_vacina = c.getString(c.getColumnIndex("nome_vacina"));
@@ -244,6 +125,7 @@ public class tableVacinas {
                 table.validade = c.getString(c.getColumnIndex("validade"));
                 table.periodicidade = c.getString(c.getColumnIndex("periodicidade"));
                 list.add(table);
+                }while(c.moveToNext());
             }
         }
     }
@@ -268,5 +150,10 @@ public class tableVacinas {
         values.put("periodicidade", this.periodicidade);
 
         return  values;
+    }
+
+    @Override
+    public String toString() {
+        return nome_vacina;
     }
 }

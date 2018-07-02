@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -146,131 +147,11 @@ public class tableProdutoFilho{
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
-        List<tableProdutoFilho> list = new List<tableProdutoFilho>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableProdutoFilho> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableProdutoFilho tableProdutoFilho) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableProdutoFilho> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableProdutoFilho> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableProdutoFilho get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableProdutoFilho set(int index, tableProdutoFilho element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableProdutoFilho element) {
-
-            }
-
-            @Override
-            public tableProdutoFilho remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableProdutoFilho> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableProdutoFilho> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableProdutoFilho> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableProdutoFilho> list = new ArrayList<tableProdutoFilho>();
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
+                do{
                 tableProdutoFilho table = new tableProdutoFilho();
                 table.produtoFilho_id = c.getInt(c.getColumnIndex("produtoFilho_id"));
                 table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
@@ -282,6 +163,7 @@ public class tableProdutoFilho{
                 table.detalhe = c.getString(c.getColumnIndex("detalhe"));
                 table.qtd_compra = c.getInt(c.getColumnIndex("qtd_compra"));
                 list.add(table);
+                }while(c.moveToNext());
             }
         }
         return list;
@@ -322,4 +204,5 @@ public class tableProdutoFilho{
 
         return  values;
     }
+
 }

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -86,136 +87,17 @@ public class tableVacinacao {
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
-        List<tableVacinacao> list = new List<tableVacinacao>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableVacinacao> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableVacinacao tableVacinacao) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableVacinacao> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableVacinacao> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableVacinacao get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableVacinacao set(int index, tableVacinacao element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableVacinacao element) {
-
-            }
-
-            @Override
-            public tableVacinacao remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableVacinacao> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableVacinacao> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableVacinacao> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableVacinacao> list = new ArrayList<tableVacinacao>();
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
+                do{
                 tableVacinacao table = new tableVacinacao();
                 table.vacinas_id = c.getInt(c.getColumnIndex("vacinas_id"));
                 table.filho_id = c.getInt(c.getColumnIndex("filho_id"));
                 table.data_vacina = c.getString(c.getColumnIndex("data_vacina"));
                 list.add(table);
+                }while(c.moveToNext());
             }
         }
         return list;
@@ -244,4 +126,5 @@ public class tableVacinacao {
 
         return  values;
     }
+
 }

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -105,138 +106,19 @@ public class tableEventos {
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
-        List<tableEventos> list = new List<tableEventos>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableEventos> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableEventos tableEventos) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableEventos> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableEventos> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableEventos get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableEventos set(int index, tableEventos element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableEventos element) {
-
-            }
-
-            @Override
-            public tableEventos remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableEventos> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableEventos> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableEventos> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableEventos> list = new ArrayList<tableEventos>();
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                tableEventos table = new tableEventos();
-                table.eventos_id = c.getInt(c.getColumnIndex("eventos_id"));
-                table.datahora_evento = c.getString(c.getColumnIndex("datahora_evento"));
-                table.local_evento = c.getString(c.getColumnIndex("local_evento"));
-                table.nome_evento = c.getString(c.getColumnIndex("nome_evento"));
-                table.descricao = c.getString(c.getColumnIndex("descricao"));
-                list.add(table);
+                do {
+                    tableEventos table = new tableEventos();
+                    table.eventos_id = c.getInt(c.getColumnIndex("eventos_id"));
+                    table.datahora_evento = c.getString(c.getColumnIndex("datahora_evento"));
+                    table.local_evento = c.getString(c.getColumnIndex("local_evento"));
+                    table.nome_evento = c.getString(c.getColumnIndex("nome_evento"));
+                    table.descricao = c.getString(c.getColumnIndex("descricao"));
+                    list.add(table);
+                }while(c.moveToNext());
             }
         }
         return list;
@@ -268,5 +150,10 @@ public class tableEventos {
         values.put("descricao", this.descricao);
 
         return  values;
+    }
+
+    @Override
+    public String toString() {
+        return this.datahora_evento +" - " + this.local_evento;
     }
 }

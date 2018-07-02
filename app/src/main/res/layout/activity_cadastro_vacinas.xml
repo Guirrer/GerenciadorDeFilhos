@@ -82,7 +82,7 @@
                 android:layout_width="330dp"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_gravity="center"
                 android:textAlignment="center"/>
             <TextView

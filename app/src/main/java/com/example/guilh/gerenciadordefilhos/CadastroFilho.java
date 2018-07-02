@@ -79,6 +79,7 @@ public class CadastroFilho extends AppCompatActivity {
                     tableFilho.selectMaxId(db.getReadableDatabase());
                     tableMedidas.setFilho_id(tableFilho.getId());
                     tableMedidas.insert(db.getReadableDatabase());
+                    limparCampos();
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroFilho.this).create();
                     alertDialog.setTitle("ALERTA");
                     alertDialog.setMessage("Filho(a) cadastrado com sucesso!");
@@ -91,9 +92,20 @@ public class CadastroFilho extends AppCompatActivity {
 
                     alertDialog.show();
 
+
                 }
             }
         });
+
+    }
+
+    private void limparCampos()
+    {
+        etNome.setText("");
+        etDtaNasc.setText("");
+        etAltura.setText("");
+        etPeso.setText("");
+        edtTamPe.setText("");
 
     }
 

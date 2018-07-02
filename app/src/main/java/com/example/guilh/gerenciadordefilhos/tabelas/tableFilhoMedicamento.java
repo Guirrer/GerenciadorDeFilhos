@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -88,136 +89,17 @@ public class tableFilhoMedicamento {
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
-        List<tableFilhoMedicamento> list = new List<tableFilhoMedicamento>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableFilhoMedicamento> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableFilhoMedicamento tableFilhoMedicamento) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableFilhoMedicamento> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableFilhoMedicamento> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableFilhoMedicamento get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableFilhoMedicamento set(int index, tableFilhoMedicamento element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableFilhoMedicamento element) {
-
-            }
-
-            @Override
-            public tableFilhoMedicamento remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableFilhoMedicamento> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableFilhoMedicamento> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableFilhoMedicamento> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableFilhoMedicamento> list = new ArrayList<tableFilhoMedicamento>();
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
+                do{
                 tableFilhoMedicamento table = new tableFilhoMedicamento();
                 table.idfilho_medicamento = c.getInt(c.getColumnIndex("idfilho_medicamento"));
                 table.filho_id = c.getInt(c.getColumnIndex("filho_id"));
                 table.medicamento_id = c.getInt(c.getColumnIndex("medicamento_id"));
                 list.add(table);
+                }while(c.moveToNext());
             }
         }
         return list;
@@ -246,4 +128,5 @@ public class tableFilhoMedicamento {
 
         return  values;
     }
+
 }

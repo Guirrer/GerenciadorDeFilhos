@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -106,131 +107,11 @@ public class tableMedidas {
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
-        List<tableMedidas> list = new List<tableMedidas>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableMedidas> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableMedidas tableMedidas) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableMedidas> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableMedidas> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableMedidas get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableMedidas set(int index, tableMedidas element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableMedidas element) {
-
-            }
-
-            @Override
-            public tableMedidas remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableMedidas> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableMedidas> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableMedidas> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableMedidas> list = new ArrayList<tableMedidas>();
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
+                do{
                 tableMedidas table = new tableMedidas();
                 table.filho_id = c.getInt(c.getColumnIndex("eventos_id"));
                 table.data_dado = c.getString(c.getColumnIndex("data_dado"));
@@ -238,6 +119,7 @@ public class tableMedidas {
                 table.tam_pe = c.getInt(c.getColumnIndex("tam_pe"));
                 table.altura = c.getFloat(c.getColumnIndex("altura"));
                 list.add(table);
+            }while(c.moveToNext());
             }
         }
         return list;

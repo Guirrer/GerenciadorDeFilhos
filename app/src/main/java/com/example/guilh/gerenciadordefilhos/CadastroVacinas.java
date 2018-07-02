@@ -49,14 +49,12 @@ public class CadastroVacinas extends AppCompatActivity {
                 tableVacinas.setPeriodicidade(etPeriodiciadade.getText().toString());
                 tableVacinas.setIdade_minima(etIdadeMinima.getText().toString());
                 tableVacinas.setDose(Integer.parseInt(etDoseVacina.getText().toString()));
-                tableVacinas.setVacina_id(tableVacinas.getVacina_id());
-                tableVacinas.insert(db.getReadableDatabase());
                 if(tableVacinas.insert(db.getReadableDatabase()) != -1)
                 {
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroVacinas.this).create();
                     alertDialog.setTitle("ALERTA");
                     alertDialog.setMessage("Vacina cadastrado com sucesso.");
-
+                    limparCampo();
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
@@ -69,5 +67,14 @@ public class CadastroVacinas extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void limparCampo()
+    {
+        etNomeVacina.setText("");
+        etDoseVacina.setText("");
+        etPeriodiciadade.setText("");
+        etIdadeMinima.setText("");
+        etValidade.setText("");
     }
 }

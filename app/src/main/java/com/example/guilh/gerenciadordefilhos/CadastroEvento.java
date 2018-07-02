@@ -45,14 +45,12 @@ public class CadastroEvento extends AppCompatActivity {
                 tableEventos.setDatahora_evento(etDtaEvento.getText().toString());
                 tableEventos.setLocal_evento(etLocalEvento.getText().toString());
                 tableEventos.setDescricao(etObservacoes.getText().toString());
-                tableEventos.insert(db.getReadableDatabase());
-                tableEventos.setEventos_id(tableEventos.getEventos_id());
                 if(tableEventos.insert(db.getReadableDatabase()) != -1)
                 {
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroEvento.this).create();
                     alertDialog.setTitle("ALERTA");
                     alertDialog.setMessage("Evento cadastrado com sucesso.");
-
+                    limparCampos();
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
@@ -65,5 +63,13 @@ public class CadastroEvento extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void limparCampos()
+    {
+        etNomeEvento.setText("");
+        etDtaEvento.setText("");
+        etLocalEvento.setText("");
+        etObservacoes.setText("");
     }
 }

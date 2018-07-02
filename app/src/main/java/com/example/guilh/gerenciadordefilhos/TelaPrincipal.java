@@ -161,4 +161,18 @@ public class TelaPrincipal extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Database db = new Database(this.getApplicationContext());
+
+        tableFilho filho = new tableFilho();
+        List<tableFilho> listaFilho = filho.selectList(db.getReadableDatabase(), usuario.getId().toString());
+
+        ArrayAdapter<tableFilho> adapter = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_list_item_1, listaFilho);
+
+
+        lvFilho.setAdapter(adapter);
+    }
 }

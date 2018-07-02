@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -96,137 +97,18 @@ public class tableUsuario implements Serializable {
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
-        List<tableUsuario> list = new List<tableUsuario>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<tableUsuario> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(tableUsuario tableUsuario) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends tableUsuario> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, @NonNull Collection<? extends tableUsuario> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public tableUsuario get(int index) {
-                return null;
-            }
-
-            @Override
-            public tableUsuario set(int index, tableUsuario element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, tableUsuario element) {
-
-            }
-
-            @Override
-            public tableUsuario remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableUsuario> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<tableUsuario> listIterator(int index) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<tableUsuario> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<tableUsuario> list = new ArrayList<tableUsuario>();
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
+                do{
                 tableUsuario table = new tableUsuario();
                 table.id = c.getInt(c.getColumnIndex("id"));
                 table.nome = c.getString(c.getColumnIndex("nome"));
                 table.senha = c.getString(c.getColumnIndex("senha"));
                 table.email = c.getString(c.getColumnIndex("email"));
                 list.add(table);
+                }while(c.moveToNext());
             }
         }
         return list;

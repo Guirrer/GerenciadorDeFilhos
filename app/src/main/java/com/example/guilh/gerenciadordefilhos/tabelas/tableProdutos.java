@@ -19,6 +19,7 @@ public class tableProdutos{
 
     private Integer produto_id;
     private String nome;
+    private String qtd;
 
     public Integer getProduto_id() {
         return produto_id;
@@ -75,6 +76,7 @@ public class tableProdutos{
     {
         String query = "SELECT * FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
+        tableProdutoFilho produto = new tableProdutoFilho();
         List<tableProdutos> list = new ArrayList<tableProdutos>();
         if (c != null) {
             if (c.getCount() > 0) {
@@ -82,6 +84,7 @@ public class tableProdutos{
                     tableProdutos table = new tableProdutos();
                     table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
                     table.nome = c.getString(c.getColumnIndex("nome"));
+                    table.qtd = produto.selectProd(produto_id,db);
                     list.add(table);
                     c.moveToNext();
                 }
@@ -115,6 +118,7 @@ public class tableProdutos{
     @Override
     public String toString()
     {
-        return nome;
+
+        return nome + qtd;
     }
 }

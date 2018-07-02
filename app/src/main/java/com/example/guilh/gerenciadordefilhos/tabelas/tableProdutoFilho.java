@@ -189,6 +189,20 @@ public class tableProdutoFilho{
         }
     }
 
+    public String selectProd(int id, SQLiteDatabase db)
+    {
+        String qtd = "";
+        String query = "SELECT SUM(qtd_pacote) as qtd FROM " + TABLE + " WHERE produto_id = " + id ;
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+            if (c.getCount() > 0) {
+                qtd = c.getString(c.getColumnIndex("qtd"));
+            }
+        }
+        return qtd;
+    }
+
     private ContentValues retornaValues()
     {
         ContentValues values = new ContentValues();

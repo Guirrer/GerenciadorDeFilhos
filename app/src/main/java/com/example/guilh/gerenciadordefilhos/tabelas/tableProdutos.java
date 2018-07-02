@@ -80,11 +80,12 @@ public class tableProdutos{
         List<tableProdutos> list = new ArrayList<tableProdutos>();
         if (c != null) {
             if (c.getCount() > 0) {
+                c.moveToFirst();
                 for(int i = 0; i < c.getCount(); i++) {
                     tableProdutos table = new tableProdutos();
                     table.produto_id = c.getInt(c.getColumnIndex("produto_id"));
                     table.nome = c.getString(c.getColumnIndex("nome"));
-                    table.qtd = produto.selectProd(produto_id,db);
+                    table.qtd = produto.selectProd(table.produto_id,db);
                     list.add(table);
                     c.moveToNext();
                 }
@@ -119,6 +120,6 @@ public class tableProdutos{
     public String toString()
     {
 
-        return nome + qtd;
+        return nome;
     }
 }

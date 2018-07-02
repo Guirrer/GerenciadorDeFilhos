@@ -52,6 +52,20 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(medidas.create());
         db.execSQL(produtoFilho.create());
         db.execSQL(vacinacao.create());
+
+        produtos.setNome("Fralda");
+        produtos.insert(db);
+        produtos.setNome("Tip Top");
+        produtos.insert(db);
+        produtos.setNome("Lenço Umidecido");
+        produtos.insert(db);
+        produtos.setNome("Pomada para Assadura");
+        produtos.insert(db);
+        produtos.setNome("Mamadeira");
+        produtos.insert(db);
+        produtos.setNome("Chupeta");
+        produtos.insert(db);
+
     }
 
     @Override

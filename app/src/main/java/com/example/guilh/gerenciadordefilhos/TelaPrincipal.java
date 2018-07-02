@@ -58,6 +58,7 @@ public class TelaPrincipal extends AppCompatActivity
         ArrayAdapter<tableFilho> adapter = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_list_item_1, listaFilho);
 
 
+
         lvFilho.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

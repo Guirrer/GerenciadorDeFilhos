@@ -24,6 +24,7 @@
                     android:text="Evento"
                     android:layout_gravity="center"/>
                 <ListView
+                    android:id="@+id/lvEvento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 

@@ -87,7 +87,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:ems="10"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:textAlignment="center"/>
 
                 <TextView
@@ -119,7 +119,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:ems="10"
-                    android:inputType="numberDecimal"
+                    android:inputType="text"
                     android:textAlignment="center"/>
 
                 <TextView

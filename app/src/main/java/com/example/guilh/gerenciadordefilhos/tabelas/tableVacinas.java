@@ -1,18 +1,11 @@
 package com.example.guilh.gerenciadordefilhos.tabelas;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
-
-import com.example.guilh.gerenciadordefilhos.Util.Database;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class tableVacinas {
     private static  final String TABLE = "vacinas";
@@ -108,7 +101,7 @@ public class tableVacinas {
         }
     }
 
-    public void selectList(SQLiteDatabase db)
+    public List<tableVacinas> selectList(SQLiteDatabase db)
     {
         String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
         Cursor c = db.rawQuery(query, null);
@@ -128,6 +121,7 @@ public class tableVacinas {
                 }while(c.moveToNext());
             }
         }
+        return list;
     }
 
     public long insert(SQLiteDatabase db)

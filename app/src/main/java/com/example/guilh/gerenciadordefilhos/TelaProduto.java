@@ -1,5 +1,7 @@
 package com.example.guilh.gerenciadordefilhos;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -117,10 +119,34 @@ public class TelaProduto extends AppCompatActivity {
                 TableProdutoFilho.setData_compra(etData.getText().toString());
                 TableProdutoFilho.setLoja_compra(etLocalCompra.getText().toString());
                 TableProdutoFilho.insert(db.getReadableDatabase());
+                if(TableProdutoFilho.insert(db.getReadableDatabase()) != -1)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(TelaProduto.this).create();
+                    alertDialog.setTitle("ALERTA");
+                    alertDialog.setMessage("Produto cadastrado com sucesso.");
+                    limpaCampos();
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    alertDialog.show();
+
+                }
 
             }
         });
 
 
+    }
+    private void limpaCampos()
+    {
+        etData.setText("");
+        etDetalhe.setText("");
+        etPreco.setText("");
+        etQuantidadePacotes.setText("");
+        etLocalCompra.setText("");
+        etQuantidade.setText("");
     }
 }

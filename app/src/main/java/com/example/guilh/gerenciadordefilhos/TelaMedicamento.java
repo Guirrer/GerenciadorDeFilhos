@@ -27,10 +27,12 @@ public class TelaMedicamento extends AppCompatActivity {
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
         lvMedicamento = (ListView)  findViewById(R.id.lvMedicamento);
 
+        tableMedicamento medicamento = new tableMedicamento();
+
+        this.lvMedicamento = (ListView) findViewById(R.id.lvMedicamento);
 
         Database db = new Database(this.getApplicationContext());
 
-        tableMedicamento medicamento = new tableMedicamento();
 
         List<tableMedicamento> listaMedicamento = medicamento.selectList(db.getReadableDatabase());
 

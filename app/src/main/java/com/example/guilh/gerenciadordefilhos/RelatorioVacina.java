@@ -8,6 +8,8 @@ import android.widget.ListView;
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableVacinas;
 
+import java.util.List;
+
 public class RelatorioVacina extends AppCompatActivity {
 
     private ListView lvVacina;
@@ -23,10 +25,10 @@ public class RelatorioVacina extends AppCompatActivity {
 
         Database db = new Database(this.getApplicationContext());
 
-        //ArrayAdapter<tableVacinas> adapter;
-        //adapter = new ArrayAdapter<tableVacinas>(this, android.R.layout.simple_list_item_1, com.example.guilh.gerenciadordefilhos.tabelas.tableVacinas.selectList(db.getReadableDatabase()));
+        ArrayAdapter<tableVacinas> adapter;
+        adapter = new ArrayAdapter<tableVacinas>(this, android.R.layout.simple_list_item_1, (List<com.example.guilh.gerenciadordefilhos.tabelas.tableVacinas>) tableVacinas);
 
-       // lvVacina.setAdapter(adapter);
+        lvVacina.setAdapter(adapter);
 
     }
 }

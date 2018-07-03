@@ -23,19 +23,20 @@
                     android:layout_height="wrap_content"
                     android:text="Vacinação"
                     android:layout_gravity="center"/>
-                <ListView
-                    android:id="@+id/lvVacina"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                </ListView>
                 <Button
-                    android:layout_marginTop="55px"
                     android:id="@+id/btnCadastrar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NOVA VACINA"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20px"
+                    android:text="NOVA VACINA" />
+
+                <ListView
+                    android:id="@+id/lvVacina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="381dp">
+                </ListView>
 
             </LinearLayout>
         </ScrollView>

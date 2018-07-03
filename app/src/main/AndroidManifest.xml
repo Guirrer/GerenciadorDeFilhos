@@ -34,7 +34,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TelaRelatorio" />
         <activity android:name=".RelatorioProduto" />
-        <activity android:name=".RelatorioVacina"></activity>
+        <activity android:name=".RelatorioVacina" />
+        <activity android:name=".TelaDetalheFilho" />
+        <activity android:name=".TelaDetalheEvento" />
+        <activity android:name=".TelaDetalheVacina"></activity>
     </application>
 
 </manifest>

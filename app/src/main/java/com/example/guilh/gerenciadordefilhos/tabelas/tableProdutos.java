@@ -119,7 +119,6 @@ public class tableProdutos{
     @Override
     public String toString()
     {
-
-        return nome;
+        return nome + " - " + qtd;
     }
 }

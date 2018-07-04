@@ -91,7 +91,6 @@ public class CadastroVacinas extends AppCompatActivity {
                 else {
                     if (tableVacinas.insert(db.getReadableDatabase()) != -1) {
                         tableVacinas.setNome_vacina(tableVacinas.getNome_vacina());
-                        tableVacinas.insert(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroVacinas.this).create();
                         alertDialog.setTitle("ALERTA");

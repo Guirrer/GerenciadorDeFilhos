@@ -99,7 +99,7 @@ public class tableMedicamento implements Serializable {
                     "valor FLOAT NULL DEFAULT NULL, " +
                     "local_compra TEXT NULL DEFAULT NULL, " +
                     "dosagem TEXT NULL DEFAULT NULL, " +
-                    "qtd INTEGER  NOT NULL, " +
+                    "qtd TEXT NOT NULL, " +
                     "PRIMARY KEY (medicamento_id) " +
                     ")";
 
@@ -121,12 +121,12 @@ public class tableMedicamento implements Serializable {
 
     public void selectMaxId(SQLiteDatabase db)
     {
-        String query = "SELECT MAX(ID) FROM " + TABLE;
+        String query = "SELECT MAX(ID) AS id FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                this.medicamento_id = c.getColumnIndex("medicamento_id");
+                this.medicamento_id = c.getColumnIndex("id");
             }
         }
     }
@@ -168,6 +168,7 @@ public class tableMedicamento implements Serializable {
                 this.laboratorio = c.getString(c.getColumnIndex("laboratorio"));
                 this.finalidade = c.getString(c.getColumnIndex("finalidade"));
                 this.valor = c.getFloat(c.getColumnIndex("valor"));
+                this.local_compra = c.getString(c.getColumnIndex("local_compra"));
                 this.qtd = c.getString(c.getColumnIndex("qtd"));
                 this.dosagem = c.getString(c.getColumnIndex("dosagem"));
             }
@@ -182,6 +183,7 @@ public class tableMedicamento implements Serializable {
         values.put("laboratorio", this.laboratorio);
         values.put("finalidade", this.finalidade);
         values.put("valor", this.valor);
+        values.put("local_compra", this.local_compra);
         values.put("qtd", this.qtd);
         values.put("dosagem", this.dosagem);
 

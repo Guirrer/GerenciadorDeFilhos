@@ -104,7 +104,7 @@ public class tableVacinas implements Serializable {
 
     public List<tableVacinas> selectList(SQLiteDatabase db)
     {
-        String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
+        String query = "SELECT * FROM " + TABLE ;
         Cursor c = db.rawQuery(query, null);
         List<tableVacinas> list = new ArrayList<tableVacinas>();
         if (c != null) {
@@ -149,6 +149,6 @@ public class tableVacinas implements Serializable {
 
     @Override
     public String toString() {
-        return nome_vacina;
+        return nome_vacina + " - " + dose;
     }
 }

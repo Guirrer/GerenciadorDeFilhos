@@ -78,7 +78,6 @@ public class CadastroMedicamento extends AppCompatActivity {
                 if(update){
                     if (tableMedicamento.update(db.getReadableDatabase()) != -1) {
                         tableMedicamento.setMedicamento_id(tableMedicamento.getMedicamento_id());
-                        tableMedicamento.update(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroMedicamento.this).create();
                         alertDialog.setTitle("ALERTA");
@@ -98,7 +97,6 @@ public class CadastroMedicamento extends AppCompatActivity {
                 else {
                     if (tableMedicamento.insert(db.getReadableDatabase()) != -1) {
                         tableMedicamento.setMedicamento_id(tableMedicamento.getMedicamento_id());
-                        tableMedicamento.insert(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroMedicamento.this).create();
                         alertDialog.setTitle("ALERTA");

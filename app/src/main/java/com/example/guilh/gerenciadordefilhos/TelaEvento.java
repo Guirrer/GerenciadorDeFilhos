@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableEventos;
+import com.example.guilh.gerenciadordefilhos.tabelas.tableFilho;
 
 import java.util.List;
 
@@ -45,5 +47,30 @@ public class TelaEvento extends AppCompatActivity {
             }
         });
 
+        lvEvento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                tableEventos eventos = (tableEventos) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(TelaEvento.this, CadastroEvento.class);
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable("evento", eventos);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+    }
+    protected void onResume() {
+        super.onResume();
+        Database db = new Database(this.getApplicationContext());
+
+        tableEventos eventos = new tableEventos();
+        List<tableEventos> listaEvento = eventos.selectList(db.getReadableDatabase());
+
+        ArrayAdapter<tableEventos> adapter = new ArrayAdapter<tableEventos>(this, android.R.layout.simple_list_item_1, listaEvento);
+
+        lvEvento.setAdapter(adapter);
     }
 }

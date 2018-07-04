@@ -2,6 +2,7 @@ package com.example.guilh.gerenciadordefilhos;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ public class CadastroVacinas extends AppCompatActivity {
 
     private Button btnCadastrarVacina;
 
+    private Boolean update;
+
     private tableVacinas tableVacinas;
     private Database db;
 
@@ -35,11 +38,27 @@ public class CadastroVacinas extends AppCompatActivity {
         etIdadeMinima = (EditText) findViewById(R.id.etIdadeMinima);
         etValidade = (EditText) findViewById(R.id.etValidade);
 
-        btnCadastrarVacina = (Button) findViewById(R.id.btnCadastrarVacina);
+        update = false;
 
         db = new Database(getApplicationContext());
 
         tableVacinas = new tableVacinas();
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        try
+        {
+            tableVacinas = (tableVacinas) bundle.getSerializable("vacina");
+            preencheCampos();
+
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        btnCadastrarVacina = (Button) findViewById(R.id.btnCadastrarVacina);
 
         btnCadastrarVacina.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,32 +68,66 @@ public class CadastroVacinas extends AppCompatActivity {
                 tableVacinas.setPeriodicidade(etPeriodiciadade.getText().toString());
                 tableVacinas.setIdade_minima(etIdadeMinima.getText().toString());
                 tableVacinas.setDose(Integer.parseInt(etDoseVacina.getText().toString()));
-                if(tableVacinas.insert(db.getReadableDatabase()) != -1)
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder(CadastroVacinas.this).create();
-                    alertDialog.setTitle("ALERTA");
-                    alertDialog.setMessage("Vacina cadastrado com sucesso.");
-                    limparCampo();
-                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                if(update){
+                    if (tableVacinas.update(db.getReadableDatabase()) != -1) {
+                        tableVacinas.setNome_vacina(tableVacinas.getNome_vacina());
+                        tableVacinas.update(db.getReadableDatabase());
+                        limpaCampo();
+                        AlertDialog alertDialog = new AlertDialog.Builder(CadastroVacinas.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Informações alteradas com sucesso!");
 
-                    alertDialog.show();
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
+                        alertDialog.show();
+
+
+                    }
+                }
+                else {
+                    if (tableVacinas.insert(db.getReadableDatabase()) != -1) {
+                        tableVacinas.setNome_vacina(tableVacinas.getNome_vacina());
+                        tableVacinas.insert(db.getReadableDatabase());
+                        limpaCampo();
+                        AlertDialog alertDialog = new AlertDialog.Builder(CadastroVacinas.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Vacina cadastrada com sucesso!");
+
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        alertDialog.show();
+                    }
                 }
             }
         });
 
     }
 
-    private void limparCampo()
+    private void limpaCampo()
     {
         etNomeVacina.setText("");
         etDoseVacina.setText("");
         etPeriodiciadade.setText("");
         etIdadeMinima.setText("");
         etValidade.setText("");
+    }
+
+    private void preencheCampos()
+    {
+        etNomeVacina.setText(tableVacinas.getNome_vacina());
+        etDoseVacina.setText(tableVacinas.getDose());
+        etPeriodiciadade.setText(tableVacinas.getPeriodicidade().toString());
+        etIdadeMinima.setText(tableVacinas.getIdade_minima().toString());
+        etValidade.setText(tableVacinas.getValidade().toString());
+        update = true;
+
     }
 }

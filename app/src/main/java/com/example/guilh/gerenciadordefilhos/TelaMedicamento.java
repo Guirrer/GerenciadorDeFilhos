@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,7 +26,7 @@ public class TelaMedicamento extends AppCompatActivity {
         setContentView(R.layout.activity_tela_medicamento);
 
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
-        lvMedicamento = (ListView)  findViewById(R.id.lvMedicamento);
+        lvMedicamento = (ListView) findViewById(R.id.lvMedicamento);
 
         tableMedicamento medicamento = new tableMedicamento();
 
@@ -33,11 +34,9 @@ public class TelaMedicamento extends AppCompatActivity {
 
         Database db = new Database(this.getApplicationContext());
 
-
         List<tableMedicamento> listaMedicamento = medicamento.selectList(db.getReadableDatabase());
 
         ArrayAdapter<tableMedicamento> adapter = new ArrayAdapter<tableMedicamento>(this, android.R.layout.simple_list_item_1, listaMedicamento);
-
 
         lvMedicamento.setAdapter(adapter);
 
@@ -49,5 +48,30 @@ public class TelaMedicamento extends AppCompatActivity {
             }
         });
 
+        lvMedicamento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                tableMedicamento medicamento = (tableMedicamento) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(TelaMedicamento.this, CadastroMedicamento.class);
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable("medicamento", medicamento);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Database db = new Database(this.getApplicationContext());
+
+        tableMedicamento medicamento = new tableMedicamento();
+        List<tableMedicamento> listaMedicamento = medicamento.selectList(db.getReadableDatabase());
+
+        ArrayAdapter<tableMedicamento> adapter = new ArrayAdapter<tableMedicamento>(this, android.R.layout.simple_list_item_1, listaMedicamento);
+
+        lvMedicamento.setAdapter(adapter);
     }
 }

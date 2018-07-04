@@ -26,7 +26,6 @@
         <activity android:name=".TelaEvento" />
         <activity android:name=".CadastroMedicamento" />
         <activity android:name=".TelaMedicamento" />
-        <activity android:name=".TelaDetalheMedicamento" />
         <activity android:name=".TelaVacinacao" />
         <activity
             android:name=".MenuActivity"
@@ -35,9 +34,6 @@
         <activity android:name=".TelaRelatorio" />
         <activity android:name=".RelatorioProduto" />
         <activity android:name=".RelatorioVacina" />
-        <activity android:name=".TelaDetalheFilho" />
-        <activity android:name=".TelaDetalheEvento" />
-        <activity android:name=".TelaDetalheVacina"></activity>
     </application>
 
 </manifest>

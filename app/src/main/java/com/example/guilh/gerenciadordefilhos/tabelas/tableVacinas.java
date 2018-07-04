@@ -4,10 +4,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class tableVacinas {
+public class tableVacinas implements Serializable {
     private static  final String TABLE = "vacinas";
 
     private Integer id;

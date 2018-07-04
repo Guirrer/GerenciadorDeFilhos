@@ -40,6 +40,7 @@ public class TelaProduto extends AppCompatActivity {
     private Button btnCadastrarProduto;
     private tableUsuario usuario;
     private Database db;
+    private Boolean update;
 
     private List<tableProdutos> nomeProduto;
     private List<tableFilho> nomeFilho;
@@ -70,6 +71,7 @@ public class TelaProduto extends AppCompatActivity {
         etData =  (EditText) findViewById(R.id.etData);
         etLocalCompra =  (EditText) findViewById(R.id.etLocalCompra);
         btnCadastrarProduto =  (Button) findViewById(R.id.btnCadastrarProduto);
+        update = false;
 
         ArrayAdapter<tableProdutos> arrayAdapterProduto = new ArrayAdapter<tableProdutos>(this, android.R.layout.simple_spinner_item, nomeProduto);
         ArrayAdapter<tableFilho> arrayAdapterFilho = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_spinner_item, nomeFilho);
@@ -119,20 +121,47 @@ public class TelaProduto extends AppCompatActivity {
                 TableProdutoFilho.setData_compra(etData.getText().toString());
                 TableProdutoFilho.setLoja_compra(etLocalCompra.getText().toString());
                 TableProdutoFilho.insert(db.getReadableDatabase());
-                if(TableProdutoFilho.insert(db.getReadableDatabase()) != -1)
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder(TelaProduto.this).create();
-                    alertDialog.setTitle("ALERTA");
-                    alertDialog.setMessage("Produto cadastrado com sucesso.");
-                    limpaCampos();
-                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                if(update){
+                    if (TableProdutoFilho.update(db.getReadableDatabase()) != -1) {
+                        TableProdutoFilho.selectMaxId(db.getReadableDatabase());
+                        TableProdutoFilho.setFilho_id(TableProdutoFilho.getProdutoFilho_id());
+                        TableProdutoFilho.update(db.getReadableDatabase());
+                        limpaCampo();
+                        AlertDialog alertDialog = new AlertDialog.Builder(TelaProduto.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Informações alterado com sucesso!");
 
-                    alertDialog.show();
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
+                        alertDialog.show();
+
+
+                    }
+                }
+                else {
+                    if (TableProdutoFilho.insert(db.getReadableDatabase()) != -1) {
+                        TableProdutoFilho.selectMaxId(db.getReadableDatabase());
+                        TableProdutoFilho.setFilho_id(TableProdutoFilho.getProdutoFilho_id());
+                        TableProdutoFilho.insert(db.getReadableDatabase());
+                        limpaCampo();
+                        AlertDialog alertDialog = new AlertDialog.Builder(TelaProduto.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Produto cadastrado com sucesso!");
+
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        alertDialog.show();
+
+
+                    }
                 }
 
             }
@@ -140,7 +169,7 @@ public class TelaProduto extends AppCompatActivity {
 
 
     }
-    private void limpaCampos()
+    private void limpaCampo()
     {
         etData.setText("");
         etDetalhe.setText("");

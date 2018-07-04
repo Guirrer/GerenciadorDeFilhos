@@ -50,15 +50,11 @@ public class TelaPrincipal extends AppCompatActivity
 
         this.lvFilho = (ListView) findViewById(R.id.lvFilho);
 
-
-
         Database db = new Database(this.getApplicationContext());
 
         List<tableFilho> listaFilho = filho.selectList(db.getReadableDatabase(), usuario.getId().toString());
 
         ArrayAdapter<tableFilho> adapter = new ArrayAdapter<tableFilho>(this, android.R.layout.simple_list_item_1, listaFilho);
-
-
 
         lvFilho.setAdapter(adapter);
 

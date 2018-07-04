@@ -43,11 +43,8 @@ public class CadastroFilho extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_filho);
 
-
         tableFilho = new tableFilho();
         tableMedidas = new tableMedidas();
-
-
 
         update = false;
         db = new Database(getApplicationContext());
@@ -97,8 +94,8 @@ public class CadastroFilho extends AppCompatActivity {
                     if (tableFilho.update(db.getReadableDatabase()) != -1) {
                         tableFilho.selectMaxId(db.getReadableDatabase());
                         tableMedidas.setFilho_id(tableFilho.getId());
-                        tableMedidas.insert(db.getReadableDatabase());
-                        limparCampos();
+                        tableMedidas.update(db.getReadableDatabase());
+                        limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroFilho.this).create();
                         alertDialog.setTitle("ALERTA");
                         alertDialog.setMessage("Informações alterado com sucesso!");
@@ -119,7 +116,7 @@ public class CadastroFilho extends AppCompatActivity {
                         tableFilho.selectMaxId(db.getReadableDatabase());
                         tableMedidas.setFilho_id(tableFilho.getId());
                         tableMedidas.insert(db.getReadableDatabase());
-                        limparCampos();
+                        limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroFilho.this).create();
                         alertDialog.setTitle("ALERTA");
                         alertDialog.setMessage("Filho(a) cadastrado com sucesso!");
@@ -140,7 +137,7 @@ public class CadastroFilho extends AppCompatActivity {
 
     }
 
-    private void limparCampos()
+    private void limpaCampo()
     {
         etNome.setText("");
         etDtaNasc.setText("");
@@ -167,6 +164,7 @@ public class CadastroFilho extends AppCompatActivity {
         etAltura.setText(tableMedidas.getAltura().toString());
         etPeso.setText(tableMedidas.getPeso().toString());
         edtTamPe.setText(tableMedidas.getTam_pe().toString());
+
     }
 
 

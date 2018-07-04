@@ -8,13 +8,14 @@ import android.support.annotation.NonNull;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableEventos {
+public class tableEventos implements Serializable {
     private static  final String TABLE = "eventos";
 
     private Integer eventos_id;

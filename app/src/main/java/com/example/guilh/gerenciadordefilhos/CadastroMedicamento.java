@@ -2,6 +2,7 @@ package com.example.guilh.gerenciadordefilhos;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
+import com.example.guilh.gerenciadordefilhos.tabelas.tableEventos;
 import com.example.guilh.gerenciadordefilhos.tabelas.tableMedicamento;
 
 public class CadastroMedicamento extends AppCompatActivity {
@@ -23,9 +25,10 @@ public class CadastroMedicamento extends AppCompatActivity {
 
     private Button btnCadastrar;
 
+    private Boolean update;
+
     private tableMedicamento tableMedicamento;
     private Database db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +43,27 @@ public class CadastroMedicamento extends AppCompatActivity {
         etQuantidade = (EditText) findViewById(R.id.etQuantidade);
         etDosagem = (EditText) findViewById(R.id.etDosagem);
 
-        btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
+        update = false;
 
         db = new Database(getApplicationContext());
 
         tableMedicamento = new tableMedicamento();
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        try
+        {
+            tableMedicamento = (tableMedicamento) bundle.getSerializable("medicamento");
+            preencheCampos();
+
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,29 +75,50 @@ public class CadastroMedicamento extends AppCompatActivity {
                 tableMedicamento.setLocal_compra(etLocalCompra.getText().toString());
                 tableMedicamento.setQtd(etQuantidade.getText().toString());
                 tableMedicamento.setDosagem(etDosagem.getText().toString());
-                //tableMedicamento.setMedicamento_id(tableMedicamento.getMedicamento_id());
-                if(tableMedicamento.insert(db.getReadableDatabase()) != -1)
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder(CadastroMedicamento.this).create();
-                    alertDialog.setTitle("ALERTA");
-                    alertDialog.setMessage("Medicamento cadastrado com sucesso.");
-                    limpaCampos();
-                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                if(update){
+                    if (tableMedicamento.update(db.getReadableDatabase()) != -1) {
+                        tableMedicamento.setMedicamento_id(tableMedicamento.getMedicamento_id());
+                        tableMedicamento.update(db.getReadableDatabase());
+                        limpaCampo();
+                        AlertDialog alertDialog = new AlertDialog.Builder(CadastroMedicamento.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Informações alteradas com sucesso!");
 
-                    alertDialog.show();
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
+                        alertDialog.show();
+
+
+                    }
+                }
+                else {
+                    if (tableMedicamento.insert(db.getReadableDatabase()) != -1) {
+                        tableMedicamento.setMedicamento_id(tableMedicamento.getMedicamento_id());
+                        tableMedicamento.insert(db.getReadableDatabase());
+                        limpaCampo();
+                        AlertDialog alertDialog = new AlertDialog.Builder(CadastroMedicamento.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Medicamento cadastrado com sucesso!");
+
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        alertDialog.show();
+                    }
                 }
             }
         });
 
-
     }
 
-    private void limpaCampos()
+    private void limpaCampo()
     {
         etNomeMedicamento.setText("");
         etFinalidade.setText("");
@@ -87,5 +127,18 @@ public class CadastroMedicamento extends AppCompatActivity {
         etLocalCompra.setText("");
         etQuantidade.setText("");
         etDosagem.setText("");
+    }
+
+    private void preencheCampos()
+    {
+        etNomeMedicamento.setText(tableMedicamento.getNome());
+        etFinalidade.setText(tableMedicamento.getFinalidade());
+        etLaboratorio.setText(tableMedicamento.getLaboratorio().toString());
+        etValor.setText(tableMedicamento.getValor().toString());
+        etLocalCompra.setText(tableMedicamento.getLocal_compra().toString());
+        etQuantidade.setText(tableMedicamento.getQtd().toString());
+        etDosagem.setText(tableMedicamento.getDosagem().toString());
+        update = true;
+
     }
 }

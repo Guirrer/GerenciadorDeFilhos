@@ -54,7 +54,7 @@ public class CadastroUsuario extends AppCompatActivity {
                     AlertDialog alertDialog = new AlertDialog.Builder(CadastroUsuario.this).create();
                     alertDialog.setTitle("ALERTA");
                     alertDialog.setMessage("Usuário cadastrado com sucesso.");
-                    limparCampos();
+                    limpaCampo();
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
@@ -72,7 +72,7 @@ public class CadastroUsuario extends AppCompatActivity {
 
     }
 
-    private void limparCampos()
+    private void limpaCampo()
     {
         etUsuario.setText("");
         etSenha.setText("");

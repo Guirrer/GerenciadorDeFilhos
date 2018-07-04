@@ -163,9 +163,6 @@ public class TelaPrincipal extends AppCompatActivity
         } else if (id == R.id.nav_vacinacao) {
             Intent intent = new Intent(TelaPrincipal.this, TelaVacinacao.class);
             startActivity(intent);
-        } else if (id == R.id.nav_vacinas) {
-            Intent intent = new Intent(TelaPrincipal.this, TelaVacina.class);
-            startActivity(intent);
         } else if (id == R.id.nav_relatorio) {
             Intent intent = new Intent(TelaPrincipal.this, TelaRelatorio.class);
             startActivity(intent);

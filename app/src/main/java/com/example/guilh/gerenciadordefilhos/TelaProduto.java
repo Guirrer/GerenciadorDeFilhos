@@ -123,9 +123,7 @@ public class TelaProduto extends AppCompatActivity {
                 TableProdutoFilho.insert(db.getReadableDatabase());
                 if(update){
                     if (TableProdutoFilho.update(db.getReadableDatabase()) != -1) {
-                        TableProdutoFilho.selectMaxId(db.getReadableDatabase());
                         TableProdutoFilho.setFilho_id(TableProdutoFilho.getProdutoFilho_id());
-                        TableProdutoFilho.update(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(TelaProduto.this).create();
                         alertDialog.setTitle("ALERTA");
@@ -144,9 +142,8 @@ public class TelaProduto extends AppCompatActivity {
                 }
                 else {
                     if (TableProdutoFilho.insert(db.getReadableDatabase()) != -1) {
-                        TableProdutoFilho.selectMaxId(db.getReadableDatabase());
+
                         TableProdutoFilho.setFilho_id(TableProdutoFilho.getProdutoFilho_id());
-                        TableProdutoFilho.insert(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(TelaProduto.this).create();
                         alertDialog.setTitle("ALERTA");

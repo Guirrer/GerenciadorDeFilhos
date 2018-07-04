@@ -149,8 +149,8 @@ public class CadastroFilho extends AppCompatActivity {
 
     private void preencheCampos()
     {
-        etNome.setText(tableFilho.getNome());
-        etDtaNasc.setText(tableFilho.getData_nasc());
+        etNome.setText(tableFilho.getNome().toString());
+        etDtaNasc.setText(tableFilho.getData_nasc().toString());
         if(tableFilho.getSexo()== "Masculino")
         {
             rbMasc.setChecked(true);

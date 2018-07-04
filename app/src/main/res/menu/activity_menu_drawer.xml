@@ -11,9 +11,6 @@
             android:id="@+id/nav_medicamento"
             android:title="Medicamento" />
         <item
-            android:id="@+id/nav_vacinas"
-            android:title="Vacinas" />
-        <item
             android:id="@+id/nav_evento"
             android:title="Evento" />
         <item

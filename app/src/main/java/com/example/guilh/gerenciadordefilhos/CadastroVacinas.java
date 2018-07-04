@@ -71,7 +71,6 @@ public class CadastroVacinas extends AppCompatActivity {
                 if(update){
                     if (tableVacinas.update(db.getReadableDatabase()) != -1) {
                         tableVacinas.setNome_vacina(tableVacinas.getNome_vacina());
-                        tableVacinas.update(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroVacinas.this).create();
                         alertDialog.setTitle("ALERTA");
@@ -121,8 +120,8 @@ public class CadastroVacinas extends AppCompatActivity {
 
     private void preencheCampos()
     {
-        etNomeVacina.setText(tableVacinas.getNome_vacina());
-        etDoseVacina.setText(tableVacinas.getDose());
+        etNomeVacina.setText(tableVacinas.getNome_vacina().toString());
+        etDoseVacina.setText(tableVacinas.getDose().toString());
         etPeriodiciadade.setText(tableVacinas.getPeriodicidade().toString());
         etIdadeMinima.setText(tableVacinas.getIdade_minima().toString());
         etValidade.setText(tableVacinas.getValidade().toString());

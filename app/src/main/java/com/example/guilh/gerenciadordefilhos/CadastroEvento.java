@@ -68,7 +68,6 @@ public class CadastroEvento extends AppCompatActivity {
                 if(update){
                     if (tableEventos.update(db.getReadableDatabase()) != -1) {
                         tableEventos.setEventos_id(tableEventos.getEventos_id());
-                        tableEventos.update(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroEvento.this).create();
                         alertDialog.setTitle("ALERTA");
@@ -88,7 +87,6 @@ public class CadastroEvento extends AppCompatActivity {
                 else {
                     if (tableEventos.insert(db.getReadableDatabase()) != -1) {
                         tableEventos.setEventos_id(tableEventos.getEventos_id());
-                        tableEventos.insert(db.getReadableDatabase());
                         limpaCampo();
                         AlertDialog alertDialog = new AlertDialog.Builder(CadastroEvento.this).create();
                         alertDialog.setTitle("ALERTA");

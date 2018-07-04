@@ -11,13 +11,14 @@ import android.widget.CursorAdapter;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class tableFilho {
+public class tableFilho implements Serializable {
     private static  final String TABLE = "filho";
 
     private Integer id;
@@ -102,12 +103,12 @@ public class tableFilho {
 
     public void selectMaxId(SQLiteDatabase db)
     {
-        String query = "SELECT MAX(ID) FROM " + TABLE;
+        String query = "SELECT MAX(id) AS id FROM " + TABLE;
         Cursor c = db.rawQuery(query, null);
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
-                this.id = c.getColumnIndex("id");
+                this.id = c.getInt(c.getColumnIndex("id"));
             }
         }
     }

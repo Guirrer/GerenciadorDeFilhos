@@ -16,6 +16,7 @@ import com.example.guilh.gerenciadordefilhos.Util.Database;
 import com.example.guilh.gerenciadordefilhos.tabelas.*;
 
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 public class CadastroFilho extends AppCompatActivity {
 
@@ -35,11 +36,21 @@ public class CadastroFilho extends AppCompatActivity {
     private tableMedidas tableMedidas;
     private tableUsuario usuario;
     private  Database db;
+    private boolean update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_filho);
+
+
+        tableFilho = new tableFilho();
+        tableMedidas = new tableMedidas();
+
+
+
+        update = false;
+        db = new Database(getApplicationContext());
 
         Intent intent = getIntent();
 
@@ -55,16 +66,24 @@ public class CadastroFilho extends AppCompatActivity {
         rbFem = (RadioButton) findViewById(R.id.rbFem);
         rbMasc = (RadioButton) findViewById(R.id.rbMasc);
 
+        try
+        {
+            tableFilho = (tableFilho) bundle.getSerializable("filho");
+            preencheCampos();
+
+        }
+        catch (Exception e)
+        {
+
+        }
+
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
-
-        db = new Database(getApplicationContext());
-
-        tableFilho = new tableFilho();
-        tableMedidas = new tableMedidas();
 
         btnCadastrar.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v) {
+                tableFilho = new tableFilho();
+                tableMedidas = new tableMedidas();
                 tableFilho.setNome(etNome.getText().toString());
                 tableFilho.setData_nasc(etDtaNasc.getText().toString());
                 tableFilho.setSexo(rbFem.isChecked() ? "Feminino" : "Masculino");
@@ -74,25 +93,47 @@ public class CadastroFilho extends AppCompatActivity {
                 tableMedidas.setTam_pe(Integer.parseInt(edtTamPe.getText().toString()));
                 Date data = new Date();
                 tableMedidas.setData_dado(data.toString());
-                if(tableFilho.insert(db.getReadableDatabase()) != -1)
-                {
-                    tableFilho.selectMaxId(db.getReadableDatabase());
-                    tableMedidas.setFilho_id(tableFilho.getId());
-                    tableMedidas.insert(db.getReadableDatabase());
-                    limparCampos();
-                    AlertDialog alertDialog = new AlertDialog.Builder(CadastroFilho.this).create();
-                    alertDialog.setTitle("ALERTA");
-                    alertDialog.setMessage("Filho(a) cadastrado com sucesso!");
+                if(update){
+                    if (tableFilho.update(db.getReadableDatabase()) != -1) {
+                        tableFilho.selectMaxId(db.getReadableDatabase());
+                        tableMedidas.setFilho_id(tableFilho.getId());
+                        tableMedidas.insert(db.getReadableDatabase());
+                        limparCampos();
+                        AlertDialog alertDialog = new AlertDialog.Builder(CadastroFilho.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Informações alterado com sucesso!");
 
-                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                    alertDialog.show();
+                        alertDialog.show();
 
 
+                    }
+                }
+                else {
+                    if (tableFilho.insert(db.getReadableDatabase()) != -1) {
+                        tableFilho.selectMaxId(db.getReadableDatabase());
+                        tableMedidas.setFilho_id(tableFilho.getId());
+                        tableMedidas.insert(db.getReadableDatabase());
+                        limparCampos();
+                        AlertDialog alertDialog = new AlertDialog.Builder(CadastroFilho.this).create();
+                        alertDialog.setTitle("ALERTA");
+                        alertDialog.setMessage("Filho(a) cadastrado com sucesso!");
+
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        alertDialog.show();
+
+
+                    }
                 }
             }
         });
@@ -107,6 +148,25 @@ public class CadastroFilho extends AppCompatActivity {
         etPeso.setText("");
         edtTamPe.setText("");
 
+    }
+
+    private void preencheCampos()
+    {
+        etNome.setText(tableFilho.getNome());
+        etDtaNasc.setText(tableFilho.getData_nasc());
+        if(tableFilho.getSexo()== "Masculino")
+        {
+            rbMasc.setChecked(true);
+        }
+        else
+        {
+            rbFem.setChecked(true);
+        }
+        update = true;
+        tableMedidas.select(tableFilho.getId(), this.db.getReadableDatabase());
+        etAltura.setText(tableMedidas.getAltura().toString());
+        etPeso.setText(tableMedidas.getPeso().toString());
+        edtTamPe.setText(tableMedidas.getTam_pe().toString());
     }
 
 

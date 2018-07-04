@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
@@ -92,6 +93,21 @@ public class TelaPrincipal extends AppCompatActivity
                 Bundle bundle = new Bundle();
 
                 bundle.putSerializable("usuario", usuario);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        lvFilho.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                tableFilho filho = (tableFilho) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(TelaPrincipal.this, CadastroFilho.class);
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable("usuario", usuario);
+                bundle.putSerializable("filho", filho);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

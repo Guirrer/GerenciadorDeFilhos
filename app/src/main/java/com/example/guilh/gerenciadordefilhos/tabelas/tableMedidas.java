@@ -127,7 +127,7 @@ public class tableMedidas {
 
     public void select(int id, SQLiteDatabase db)
     {
-        String query = "SELECT * FROM " + TABLE + " WHERE ID = " + id ;
+        String query = "SELECT * FROM " + TABLE + " WHERE FILHO_ID = " + id + " ORDER BY DATA_DADO DESC LIMIT 1" ;
         Cursor c = db.rawQuery(query, null);
         if (c != null) {
             c.moveToFirst();

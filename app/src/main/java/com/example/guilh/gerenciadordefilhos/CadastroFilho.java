@@ -79,8 +79,7 @@ public class CadastroFilho extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v) {
-                tableFilho = new tableFilho();
-                tableMedidas = new tableMedidas();
+
                 tableFilho.setNome(etNome.getText().toString());
                 tableFilho.setData_nasc(etDtaNasc.getText().toString());
                 tableFilho.setSexo(rbFem.isChecked() ? "Feminino" : "Masculino");

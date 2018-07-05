@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.guilh.gerenciadordefilhos.Util.Database;
-import com.example.guilh.gerenciadordefilhos.tabelas.tableProdutos;
+import com.example.guilh.gerenciadordefilhos.tabelas.tableProdutoFilho;
 
 public class RelatorioProduto extends AppCompatActivity {
 
@@ -17,13 +17,13 @@ public class RelatorioProduto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatorio_produto);
 
-        tableProdutos tableProdutos = new tableProdutos();
+        tableProdutoFilho tableProdutoFilho = new tableProdutoFilho();
 
         this.lvProduto = (ListView) findViewById(R.id.lvProduto);
 
         Database db = new Database(this.getApplicationContext());
 
-        ArrayAdapter<tableProdutos> adapter = new ArrayAdapter<tableProdutos>(this, android.R.layout.simple_list_item_1, tableProdutos.selectList(db.getReadableDatabase()));
+        ArrayAdapter<tableProdutoFilho> adapter = new ArrayAdapter<tableProdutoFilho>(this, android.R.layout.simple_list_item_1, tableProdutoFilho.selectList(db.getReadableDatabase()));
 
         lvProduto.setAdapter(adapter);
     }

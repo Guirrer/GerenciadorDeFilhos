@@ -26,6 +26,7 @@ public class tableProdutoFilho{
     private Float preco;
     private String detalhe;
     private Integer qtd_compra;
+    private String nome;
 
     public Integer getProdutoFilho_id() {
         return produtoFilho_id;
@@ -218,5 +219,9 @@ public class tableProdutoFilho{
 
         return  values;
     }
-
+ @Override
+ public String toString()
+ {
+     return produto_id + " - " + qtd_pacote;
+ }
 }
